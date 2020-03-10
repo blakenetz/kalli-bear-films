@@ -5,9 +5,9 @@ body {
   padding: 0;
   margin: 0;
   background: #fafafa;
-  font-family: "Helvetica Neue", arial, sans-serif;
+  font-family: $font-body;
   font-weight: 400;
-  color: #444;
+  color: $grey;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,4 +18,12 @@ body {
 
 #app {
   height: 100%;
+  display: flex;
+
+  aside ~ section {
+    padding: 1rem;
+    min-height: 100%;
+    width: 100%;
+    background: $lavender;
+  }
 }

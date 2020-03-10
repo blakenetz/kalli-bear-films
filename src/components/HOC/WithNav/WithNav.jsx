@@ -1,11 +1,13 @@
-import { Link } from "preact-router";
+import { Link } from "preact-router/match";
+import style from "./style";
 
 function withNav(WrappedComponent) {
   function WithNav(props) {
     return (
       <>
-        <aside class={styles.nav}>
+        <aside class={style.aside}>
           <nav>
+            <h1>Kalli Bear Films</h1>
             <ul>
               {[
                 { title: "Work", route: "/work" },
@@ -25,8 +27,6 @@ function withNav(WrappedComponent) {
       </>
     );
   }
-
-  console.log(WrappedComponent.name);
 
   WithNav.displayName = `withNav(${WrappedComponent.displayName ||
     WrappedComponent.name})`;

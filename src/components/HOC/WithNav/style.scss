@@ -1,0 +1,27 @@
+.aside {
+  @import "../../../style/variables";
+
+  min-height: 100vh;
+  padding: 1rem;
+  position: relative;
+
+  nav {
+    width: 10rem;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    height: 60vh;
+    text-align: right;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 1rem 0;
+    border-bottom: 1px solid $grey;
+  }
+}
