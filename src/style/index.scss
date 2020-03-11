@@ -4,3 +4,11 @@
 // global
 @import "./variables";
 @import "./global";
+
+// components and routes
+@import "../components/HOC/WithNav/withNav";
+@import "../routes/About/about";
+@import "../routes/Contact/contact";
+@import "../routes/Home/home";
+@import "../routes/Packages/packages";
+@import "../routes/Work/work";

@@ -1,11 +1,10 @@
 import { Link } from "preact-router/match";
-import style from "./style";
 
 function withNav(WrappedComponent) {
   function WithNav(props) {
     return (
       <>
-        <aside class={style.aside}>
+        <aside class="aside">
           <nav>
             <h1>Kalli Bear Films</h1>
             <ul>
@@ -16,7 +15,9 @@ function withNav(WrappedComponent) {
                 { title: "Contact", route: "/contact" }
               ].map(({ title, route }) => (
                 <li>
-                  <Link to={route}>{title}</Link>
+                  <Link href={route} activeClassName="active">
+                    {title}
+                  </Link>
                 </li>
               ))}
             </ul>
