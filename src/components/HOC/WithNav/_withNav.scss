@@ -18,6 +18,12 @@
     list-style: none;
   }
 
+  h1 {
+    color: $grey;
+    letter-spacing: 0.2em;
+    line-height: 2em;
+  }
+
   li {
     position: relative;
     margin: 3.2em 0;
@@ -51,7 +57,7 @@
       background: black;
       left: 0;
       bottom: 0;
-      background-image: linear-gradient(to right, #5e42a6, #b74e91);
+      background-image: linear-gradient(to right, white, $blue_dark);
     }
   }
 }
