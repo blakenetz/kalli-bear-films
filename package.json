@@ -13,7 +13,7 @@
     "dev": "preact watch",
     "lint": "eslint src",
     "test": "jest",
-    "predeploy": "yarn build",
+    "predeploy": "preact build --no-prerender",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -38,6 +38,7 @@
   "dependencies": {
     "animejs": "^3.1.0",
     "classnames": "^2.2.6",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",

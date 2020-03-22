@@ -18,7 +18,8 @@ body {
   box-sizing: border-box;
 }
 
-#app {
+.with-nav {
+  display: flex;
   aside ~ section {
     padding: 1rem;
     min-height: 100%;
