@@ -6,6 +6,14 @@
   margin: 0;
   padding: 0;
 
+  overflow: hidden;
+  height: 100vh;
+
+  &.loaded {
+    height: 100%;
+    overflow: unset;
+  }
+
   .logo {
     width: 100vw;
     height: 100vh;
@@ -16,6 +24,7 @@
     top: 0;
     left: 0;
     z-index: 15;
+    background-color: $white;
 
     img {
       width: 15rem;
@@ -48,24 +57,75 @@
     padding: 1rem;
     color: $white;
     z-index: 5;
-    bottom: 0;
+    top: 0;
     width: 100%;
-    margin-bottom: 10vh;
+    margin-bottom: 25vh;
   }
 
-  h1 {
+  #anim-h1 {
     font-family: $font-header;
     text-align: center;
     font-size: 13vw;
     margin: calc(13vw / 2) 0;
+    position: relative;
+    color: $white;
 
-    text-decoration-line: overline;
+    .text-wrapper {
+      position: relative;
+      display: inline-block;
+      padding-top: 0.1em;
+      padding-right: 0.05em;
+      padding-bottom: 0.15em;
+      line-height: 1em;
+    }
+    .line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 3px;
+      width: 100%;
+      background-color: $white;
+      transform-origin: 0.5 0;
+    }
+    .letters {
+      display: inline-block;
+      opacity: 0;
+    }
+    .letters-1 {
+      margin: auto 1rem;
+    }
   }
 
   .content {
+    margin-top: -25vh;
+    position: relative;
+    z-index: 5;
+
+    > article {
+      background: $white;
+    }
+
+    .angle {
+      clip-path: polygon(0 50%, 100% 0, 100% 100%, 0% 100%);
+      width: 100%;
+      height: 10vw;
+      z-index: 5;
+      background-color: $white;
+    }
+
     h2 {
+      background-color: $white;
       margin: 0;
+      margin-top: -5px;
       text-align: center;
+    }
+
+    .testimonies {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
     }
 
     em {
@@ -77,7 +137,7 @@
     }
   }
 
-  #waterfall {
+  #anim-waterfall {
     background: $white;
     height: 100vh;
     width: 100%;
