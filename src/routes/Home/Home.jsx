@@ -1,12 +1,52 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useCallback, useState } from "preact/hooks";
+import anime from "animejs";
+import classnames from "classnames";
+
 export default function Home() {
+  const [loaded, setLoaded] = useState(false);
+  const [timeoutId, setTimeOutId] = useState(0);
+
+  useEffect(() => {
+    if (loaded) {
+      anime({
+        targets: "#waterfall",
+        height: "0",
+        easing: "easeInOutQuad",
+        delay: 500,
+        duration: 2000,
+        borderTopLeftRadius: ["0%", "50%"],
+        borderTopRightRadius: ["0%", "30%"]
+      });
+    }
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [loaded]);
+
+  const handleLoad = useCallback(() => {
+    const id = window.setTimeout(() => setLoaded(true), 1500);
+    setTimeOutId(id);
+  }, []);
+
   return (
     <section class="home">
+      <section class={classnames("logo", { loaded })}>
+        <img
+          src="/assets/images/logo.png"
+          alt="Kalli Bear Films logo"
+          onLoad={handleLoad}
+        />
+      </section>
+
       <section class="title">
         <div class="bg-img" />
 
         <article class="title-content">
           <h1>Kalli Bear Films</h1>
         </article>
+        <div id="waterfall" />
       </section>
 
       <section class="content">

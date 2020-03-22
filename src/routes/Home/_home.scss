@@ -1,13 +1,36 @@
 .home {
+  position: relative;
   min-height: 100vh;
   width: 100vw;
-  padding: 2rem;
   background-color: $white;
+  margin: 0;
+  padding: 0;
+
+  .logo {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+
+    img {
+      width: 15rem;
+      height: auto;
+    }
+
+    &.loaded {
+      display: none;
+    }
+  }
 
   .title {
     position: relative;
     display: inline-block;
-    height: calc(100vh - 4rem);
+    height: 100vh;
     width: 100%;
   }
 
@@ -27,12 +50,12 @@
     z-index: 5;
     bottom: 0;
     width: 100%;
+    margin-bottom: 10vh;
   }
 
   h1 {
     font-family: $font-header;
     text-align: center;
-    // font-size: min(13vw, 2rem);
     font-size: 13vw;
     margin: calc(13vw / 2) 0;
 
@@ -41,10 +64,8 @@
 
   .content {
     h2 {
+      margin: 0;
       text-align: center;
-    }
-
-    .testimonies {
     }
 
     em {
@@ -54,5 +75,15 @@
       padding-top: 1rem;
       text-align: center;
     }
+  }
+
+  #waterfall {
+    background: $white;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
   }
 }
