@@ -90,7 +90,7 @@ export default function Home() {
       <section class="content">
         <div class="angle" />
 
-        <article>
+        <article class="content-body">
           <h2 id="anim-h2">A Day To Remember</h2>
           <div class="testimonies">
             <em>
@@ -106,6 +106,17 @@ export default function Home() {
             </em>
           </div>
         </article>
+
+        <nav>
+          <div class="angle" />
+          <div class="button-wrapper">
+            {["about", "work", "packages", "contact"].map(route => (
+              <a href={`/${route}`}>
+                <button>{route}</button>
+              </a>
+            ))}
+          </div>
+        </nav>
       </section>
     </section>
   );
