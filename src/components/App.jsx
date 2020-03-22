@@ -11,7 +11,8 @@ import Contact from "../routes/Contact/Contact";
 
 export default class App extends Component {
   state = {
-    hasNav: false
+    hasNav: false,
+    showIntroAnim: true
   };
 
   /** Gets fired when the route changes.
@@ -20,14 +21,17 @@ export default class App extends Component {
    */
   handleRoute = e => {
     this.currentUrl = e.url;
-    this.setState({ hasNav: e.url !== "/" });
+    const hasNav = e.url !== "/";
+    this.setState({ hasNav });
+    // don't show intro anim again
+    if (hasNav) this.setState({ showIntroAnim: false });
   };
 
   render() {
     return (
       <main id="app" class={classnames({ "with-nav": this.state.hasNav })}>
         <Router onChange={this.handleRoute}>
-          <Home path="/" />
+          <Home path="/" showIntroAnim={this.state.showIntroAnim} />
           <Work path="/work" />
           <About path="/about" />
           <Packages path="/packages" />

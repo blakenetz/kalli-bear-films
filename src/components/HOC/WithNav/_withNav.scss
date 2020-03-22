@@ -18,6 +18,10 @@
     list-style: none;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   h1 {
     color: $grey;
     letter-spacing: 0.2em;
@@ -31,7 +35,6 @@
     a {
       line-height: 3.5em;
       text-transform: uppercase;
-      text-decoration: none;
       letter-spacing: 0.2em;
       color: rgba($grey, 0.35);
       display: block;

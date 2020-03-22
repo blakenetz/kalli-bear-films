@@ -6,17 +6,14 @@ function withNav(WrappedComponent) {
       <>
         <aside class="aside">
           <nav>
-            <h1>Kalli Bear Films</h1>
+            <a href="/">
+              <h1>Kalli Bear Films</h1>
+            </a>
             <ul>
-              {[
-                { title: "Work", route: "/work" },
-                { title: "About", route: "/about" },
-                { title: "Packages", route: "/packages" },
-                { title: "Contact", route: "/contact" }
-              ].map(({ title, route }) => (
+              {["work", "about", "packages", "contact"].map(route => (
                 <li>
-                  <Link href={route} activeClassName="active">
-                    {title}
+                  <Link href={`/${route}`} activeClassName="active">
+                    {route}
                   </Link>
                 </li>
               ))}

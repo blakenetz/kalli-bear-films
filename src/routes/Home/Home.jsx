@@ -1,30 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useCallback, useState, useRef } from "preact/hooks";
+import { useEffect, useCallback, useState } from "preact/hooks";
 import anime from "animejs";
 import classnames from "classnames";
+import PropTypes from "prop-types";
 
-export default function Home() {
+function Home(props) {
   const [loaded, setLoaded] = useState(false);
   const [animLoaded, setAnimLoaded] = useState(false);
   const [timeoutId, setTimeOutId] = useState(0);
-  const ref = useRef(null);
 
   useEffect(() => {
-    if (loaded) {
-      anime
-        .timeline()
-        // waterfall
-        .add({
-          targets: "#anim-waterfall",
-          height: "0",
-          easing: "easeInOutQuad",
-          delay: 500,
-          duration: 2000,
-          borderTopLeftRadius: ["0%", "50%"],
-          borderTopRightRadius: ["0%", "30%"],
-          changeComplete: () => setAnimLoaded(true)
-        })
-        // first header
+    const timeline = anime.timeline();
+    if (loaded || !props.showIntroAnim) {
+      if (props.showIntroAnim) {
+        timeline
+          // waterfall
+          .add({
+            targets: "#anim-waterfall",
+            height: "0",
+            easing: "easeInOutQuad",
+            delay: 500,
+            duration: 2000,
+            borderTopLeftRadius: ["0%", "50%"],
+            borderTopRightRadius: ["0%", "30%"],
+            changeComplete: () => setAnimLoaded(true)
+          });
+      }
+
+      // first header
+      timeline
         .add({
           targets: "#anim-h1 .line",
           opacity: [0.5, 1],
@@ -56,13 +60,21 @@ export default function Home() {
   }, [loaded]);
 
   const handleLoad = useCallback(() => {
-    const id = window.setTimeout(() => setLoaded(true), 1500);
-    setTimeOutId(id);
+    console.log(props);
+    if (props.showIntroAnim) {
+      console.log("here");
+      const id = window.setTimeout(() => setLoaded(true), 1500);
+      setTimeOutId(id);
+    }
   }, []);
 
   return (
-    <section class={classnames("home", { loaded: animLoaded })}>
-      <section class={classnames("logo", { loaded })}>
+    <section
+      class={classnames("home", { loaded: animLoaded || !props.showIntroAnim })}
+    >
+      <section
+        class={classnames("logo", { loaded: loaded || !props.showIntroAnim })}
+      >
         <img
           src="/assets/images/logo.png"
           alt="Kalli Bear Films logo"
@@ -75,7 +87,7 @@ export default function Home() {
 
         <article class="title-content">
           <h1 id="anim-h1">
-            <span class="text-wrapper" ref={ref}>
+            <span class="text-wrapper">
               <span class="line line1" />
               {"Kalli Bear Films".split(" ").map((l, i) => (
                 <span class={`letters letters-${i}`}>{l}</span>
@@ -84,7 +96,8 @@ export default function Home() {
             </span>
           </h1>
         </article>
-        <div id="anim-waterfall" />
+
+        {props.showIntroAnim && <div id="anim-waterfall" />}
       </section>
 
       <section class="content">
@@ -121,3 +134,12 @@ export default function Home() {
     </section>
   );
 }
+
+Home.propTypes = {
+  showIntroAnim: PropTypes.bool.isRequired
+};
+Home.defaultProps = {
+  showIntroAnim: true
+};
+
+export default Home;
