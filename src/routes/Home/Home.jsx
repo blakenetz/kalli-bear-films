@@ -117,18 +117,17 @@ function Home(props) {
             </em>
           </div>
         </article>
-
-        <nav>
-          <div class="angle" />
-          <div class="button-wrapper">
-            {props.routes.map(route => (
-              <a href={`/${route}`}>
-                <button>{route}</button>
-              </a>
-            ))}
-          </div>
-        </nav>
       </section>
+      <footer>
+        <div class="angle" />
+        <nav class="button-wrapper">
+          {props.routes.map(route => (
+            <a href={`/${route}`}>
+              <button>{route}</button>
+            </a>
+          ))}
+        </nav>
+      </footer>
     </section>
   );
 }
