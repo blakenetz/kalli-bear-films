@@ -20,6 +20,7 @@
 
   a {
     text-decoration: none;
+    outline: none;
   }
 
   h1 {
@@ -48,8 +49,11 @@
       opacity: 0.2;
     }
 
-    &:not(.active):hover a {
-      color: rgba($grey, 0.75);
+    &:not(.active) {
+      &:hover a,
+      & a:focus {
+        color: rgba($grey, 0.75);
+      }
     }
 
     &::after {

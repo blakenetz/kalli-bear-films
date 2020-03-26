@@ -4,10 +4,12 @@ import classnames from "classnames";
 
 // Code-splitting is automated for routes
 import Home from "../routes/Home/Home";
-import Work from "../routes/Work/Work";
+import Portfolio from "../routes/Portfolio/Portfolio";
 import About from "../routes/About/About";
 import Packages from "../routes/Packages/Packages";
 import Contact from "../routes/Contact/Contact";
+
+import { routes } from "./HOC/WithNav/WithNav";
 
 export default class App extends Component {
   state = {
@@ -31,11 +33,15 @@ export default class App extends Component {
     return (
       <main id="app" class={classnames({ "with-nav": this.state.hasNav })}>
         <Router onChange={this.handleRoute}>
-          <Home path="/" showIntroAnim={this.state.showIntroAnim} />
-          <Work path="/work" />
+          <Portfolio path="/portfolio" />
           <About path="/about" />
           <Packages path="/packages" />
           <Contact path="/contact" />
+          <Home
+            default
+            showIntroAnim={this.state.showIntroAnim}
+            routes={routes}
+          />
         </Router>
       </main>
     );

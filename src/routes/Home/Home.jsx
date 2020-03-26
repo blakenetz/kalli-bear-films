@@ -60,9 +60,7 @@ function Home(props) {
   }, [loaded]);
 
   const handleLoad = useCallback(() => {
-    console.log(props);
     if (props.showIntroAnim) {
-      console.log("here");
       const id = window.setTimeout(() => setLoaded(true), 1500);
       setTimeOutId(id);
     }
@@ -123,7 +121,7 @@ function Home(props) {
         <nav>
           <div class="angle" />
           <div class="button-wrapper">
-            {["about", "work", "packages", "contact"].map(route => (
+            {props.routes.map(route => (
               <a href={`/${route}`}>
                 <button>{route}</button>
               </a>
@@ -136,10 +134,8 @@ function Home(props) {
 }
 
 Home.propTypes = {
-  showIntroAnim: PropTypes.bool.isRequired
-};
-Home.defaultProps = {
-  showIntroAnim: true
+  showIntroAnim: PropTypes.bool.isRequired,
+  routes: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default Home;

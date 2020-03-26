@@ -1,9 +1,10 @@
 import withNav from "../../components/HOC/WithNav/WithNav";
 
-function Work(props) {
+function Work() {
   return (
     <section>
-      <h1>Work</h1>
+      <h1>Portfolio</h1>
+      <article></article>
     </section>
   );
 }

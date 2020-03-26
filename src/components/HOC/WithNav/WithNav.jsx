@@ -1,5 +1,7 @@
 import { Link } from "preact-router/match";
 
+export const routes = ["portfolio", "about", "packages", "contact"];
+
 function withNav(WrappedComponent) {
   function WithNav(props) {
     return (
@@ -10,7 +12,7 @@ function withNav(WrappedComponent) {
               <h1>Kalli Bear Films</h1>
             </a>
             <ul>
-              {["work", "about", "packages", "contact"].map(route => (
+              {routes.map(route => (
                 <li>
                   <Link href={`/${route}`} activeClassName="active">
                     {route}
