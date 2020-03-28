@@ -44,6 +44,7 @@
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
     "prop-types": "^15.7.2",
+    "react-youtube": "^7.9.0",
     "sass-loader": "^8.0.2"
   },
   "jest": {
