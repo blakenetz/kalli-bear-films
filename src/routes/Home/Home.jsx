@@ -48,10 +48,7 @@ function Home(props) {
           scaleY: [0.5, 1],
           easing: "easeOutExpo",
           duration: 600
-        })
-
-        // second header
-        .add({});
+        });
     }
 
     return () => {
