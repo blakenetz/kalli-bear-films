@@ -38,6 +38,16 @@ function Portfolio() {
   const [opts, setOpts] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
+    anime({
+      targets: ".cell .video",
+      duration: 1000,
+      delay: anime.stagger(100, { start: 300 }),
+      translateY: ["-100%", 0],
+      elasticity: 200
+    });
+  }, []);
+
+  useEffect(() => {
     anime
       .timeline()
       .add(fadeOutOpts)

@@ -20,9 +20,7 @@ function Home(props) {
             height: "0",
             easing: "easeInOutQuad",
             delay: 500,
-            duration: 2000,
-            borderTopLeftRadius: ["0%", "50%"],
-            borderTopRightRadius: ["0%", "30%"],
+            duration: 1500,
             changeComplete: () => setAnimLoaded(true)
           });
       }

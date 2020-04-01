@@ -7,16 +7,13 @@
   }
   .cell {
     position: relative;
+    overflow: hidden;
   }
 
   .video {
     position: relative;
     margin: -6.5% 0;
     background: $black;
-
-    .anime-target {
-      opacity: 1;
-    }
   }
 
   figure {
