@@ -3,6 +3,7 @@ import { useState, useEffect } from "preact/hooks";
 import YouTube from "react-youtube";
 import classnames from "classnames";
 import anime from "animejs";
+import { debounce } from "lodash";
 
 import withNav from "../../components/HOC/WithNav/WithNav";
 import { ErrorSVG, PlaySVG } from "../../components/svg/VideoControls";
@@ -45,6 +46,20 @@ function Portfolio() {
       translateY: ["-100%", 0],
       elasticity: 200
     });
+
+    const onResize = debounce(() => {
+      const videoEl = document.querySelector(".show");
+      if (videoEl) {
+        extractAndSetOpts(videoEl.getBoundingClientRect());
+      }
+    }, 400);
+
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      onResize.cancel;
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -54,10 +69,14 @@ function Portfolio() {
       .add({ ...fadeInOpts, complete: () => setReadyVideo(showVideo) });
   }, [showVideo]);
 
-  function handleClick(id, e) {
+  function extractAndSetOpts({ width, height }) {
     // match height of image element
-    const { width, height } = e.currentTarget.getBoundingClientRect();
     setOpts({ width, height: height - height * 0.265 });
+  }
+
+  function handleClick(id, e) {
+    extractAndSetOpts(e.currentTarget.getBoundingClientRect());
+
     // show youtube iframe
     setShowVideo(id);
   }
