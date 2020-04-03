@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useCallback } from "preact/hooks";
 import YouTube from "react-youtube";
 import classnames from "classnames";
 import anime from "animejs";
@@ -29,6 +29,8 @@ const fadeOutOpts = {
   opacity: [0, 1]
 };
 
+const getHeight = height => height - height * 0.265;
+
 function Portfolio() {
   // track a single id
   const [showVideo, setShowVideo] = useState();
@@ -50,7 +52,8 @@ function Portfolio() {
     const onResize = debounce(() => {
       const videoEl = document.querySelector(".show");
       if (videoEl) {
-        extractAndSetOpts(videoEl.getBoundingClientRect());
+        const { width, height } = videoEl.getBoundingClientRect();
+        setOpts({ width, height: getHeight(height) });
       }
     }, 400);
 
@@ -69,27 +72,29 @@ function Portfolio() {
       .add({ ...fadeInOpts, complete: () => setReadyVideo(showVideo) });
   }, [showVideo]);
 
-  function extractAndSetOpts({ width, height }) {
-    // match height of image element
-    setOpts({ width, height: height - height * 0.265 });
-  }
+  const handleClick = useCallback(
+    (id, e) => {
+      const { width, height } = e.currentTarget.getBoundingClientRect();
+      setOpts({ width, height: getHeight(height) });
 
-  function handleClick(id, e) {
-    extractAndSetOpts(e.currentTarget.getBoundingClientRect());
+      // show youtube iframe
+      setShowVideo(id);
+    },
+    [setShowVideo]
+  );
 
-    // show youtube iframe
-    setShowVideo(id);
-  }
+  const handleError = useCallback(
+    id => {
+      setErrorVideos([...errorVideos, id]);
+    },
+    [errorVideos]
+  );
 
-  function handleError(id) {
-    setErrorVideos([...errorVideos, id]);
-  }
-
-  function handleReady(e) {
+  const handleReady = useCallback(e => {
     e.target.playVideo();
-  }
+  }, []);
 
-  function handleEnd(id) {
+  const handleEnd = useCallback(id => {
     // find current in `video` array
     let currentIndex = -1;
     videos.forEach((url, i) => {
@@ -103,7 +108,7 @@ function Portfolio() {
       currentIndex !== videos.length - 1 ? currentIndex + 1 : 0
     ];
     setShowVideo(nextId);
-  }
+  }, []);
 
   return (
     <section class="portfolio">
