@@ -1,0 +1,86 @@
+.about {
+  position: relative;
+
+  article {
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    text-align: right;
+    margin: 1rem;
+    position: relative;
+    padding-bottom: 0.75em;
+    &::after {
+      @include gradient-underline($white, $pink_blush);
+    }
+  }
+
+  p {
+    margin: 0;
+    line-height: 2em;
+  }
+
+  figure {
+    margin: 0;
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  .img-wrapper {
+    width: 65%;
+    img {
+      position: static;
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
+  }
+
+  figcaption {
+    width: 35%;
+    .text-wrapper {
+      overflow: visible;
+      position: relative;
+      max-width: initial;
+      background: $white;
+      width: 160%;
+      left: -60%;
+      margin-top: 100%;
+      padding: 1em;
+      padding-bottom: 2em;
+    }
+  }
+
+  .your-story {
+    & > * {
+      padding: 1em;
+      width: 80%;
+      margin-top: -2em;
+      position: relative;
+      z-index: 5;
+    }
+    div:first-of-type {
+      background-color: rgba($pink_blush, 0.3);
+      padding-bottom: 2em;
+      margin-left: 1em;
+      h2 {
+        text-align: left;
+        &::after {
+          @include gradient-underline(
+            $blue_light,
+            $white,
+            rgba($pink_blush, 0)
+          );
+        }
+      }
+    }
+    div:nth-of-type(2) {
+      background-color: rgba($tangerine, 0.3);
+      margin-right: 1em;
+      margin-left: auto;
+      h2::after {
+        @include gradient-underline(rgba($tangerine, 0), $white, $blue_light);
+      }
+    }
+  }
+}

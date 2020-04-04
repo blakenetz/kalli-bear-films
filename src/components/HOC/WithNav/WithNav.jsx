@@ -14,6 +14,7 @@ const defaults = {
   duration: 600,
 };
 
+const breakpoint = 576;
 // for menu
 export const startPoints = "0,0 0,110 0,0 215,0";
 const endPoints = "0,0 0,110 186,86 215,0";
@@ -25,6 +26,7 @@ const xEnd = 21;
 
 export default function withNav(WrappedComponent) {
   function WithNav(props) {
+    const [renderMenu, setRenderMenu] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [showMenuContent, setShowMenuContent] = useState(false);
 
@@ -89,11 +91,14 @@ export default function withNav(WrappedComponent) {
     }, [showMenu]);
 
     useEffect(() => {
+      if (window.innerWidth <= breakpoint) setRenderMenu(true);
+
       const onKeydown = e => (e.code === "Escape" ? setShowMenu(false) : null);
       const onResize = debounce(() => {
-        if (window.innerWidth >= 576) {
+        if (window.innerWidth >= breakpoint) {
           setShowMenu(false);
           setShowMenuContent(false);
+          renderMenu(false);
         }
       }, 400);
 
@@ -121,7 +126,9 @@ export default function withNav(WrappedComponent) {
               coordinates={[xStart, yTop, xEnd, yBottom]}
             />
           </header>
-          <MobileNav showContent={showMenu && showMenuContent} />
+          {renderMenu && (
+            <MobileNav showContent={showMenu && showMenuContent} />
+          )}
 
           <WrappedComponent {...props} />
         </section>

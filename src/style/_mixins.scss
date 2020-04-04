@@ -3,3 +3,13 @@
   background-size: 600% 600%;
   animation: gradientAnim 90s ease infinite;
 }
+
+@mixin gradient-underline($colors...) {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0.2em;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right, $colors);
+}
