@@ -37,9 +37,7 @@ body {
 }
 
 main {
-  background: linear-gradient(226deg, $pink_blush, $white, $blue_light);
-  background-size: 600% 600%;
-  animation: gradientAnim 90s ease infinite;
+  @include background-animation($pink_blush, $white, $blue_light);
 }
 
 @keyframes gradientAnim {

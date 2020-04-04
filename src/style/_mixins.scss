@@ -1,0 +1,5 @@
+@mixin background-animation($colors...) {
+  background: linear-gradient(226deg, $colors);
+  background-size: 600% 600%;
+  animation: gradientAnim 90s ease infinite;
+}

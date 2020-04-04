@@ -1,4 +1,12 @@
-export default function Menu(props) {
+import { useMemo } from "preact/hooks";
+import PropTypes from "prop-types";
+
+function Menu(props) {
+  const xValues = useMemo(() => ({ x1: props.xStart, x2: props.xEnd }), [
+    props.xEnd,
+    props.xStart,
+  ]);
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,9 +20,22 @@ export default function Menu(props) {
       stroke-linejoin="round"
       {...props}
     >
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="18" x2="21" y2="18" />
+      <line {...xValues} y1={props.yTop} y2={props.yTop} class="anime-top" />
+      <line {...xValues} y1="12" y2="12" class="anime-middle" />
+      <line
+        {...xValues}
+        y1={props.yBottom}
+        y2={props.yBottom}
+        class="anime-bottom"
+      />
     </svg>
   );
 }
+Menu.propTypes = {
+  yTop: PropTypes.number.isRequired,
+  yBottom: PropTypes.number.isRequired,
+  xStart: PropTypes.number.isRequired,
+  xEnd: PropTypes.number.isRequired,
+};
+
+export default Menu;
