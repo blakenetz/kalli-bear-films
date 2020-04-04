@@ -6,6 +6,7 @@
   .cell {
     position: relative;
     overflow: hidden;
+    user-select: none;
   }
 
   .video {

@@ -1,11 +1,7 @@
-import { useMemo } from "preact/hooks";
 import PropTypes from "prop-types";
 
 function Menu(props) {
-  const xValues = useMemo(() => ({ x1: props.xStart, x2: props.xEnd }), [
-    props.xEnd,
-    props.xStart,
-  ]);
+  const [x1, y1, x2, y2] = props.coordinates;
 
   return (
     <svg
@@ -20,22 +16,14 @@ function Menu(props) {
       stroke-linejoin="round"
       {...props}
     >
-      <line {...xValues} y1={props.yTop} y2={props.yTop} class="anime-top" />
-      <line {...xValues} y1="12" y2="12" class="anime-middle" />
-      <line
-        {...xValues}
-        y1={props.yBottom}
-        y2={props.yBottom}
-        class="anime-bottom"
-      />
+      <line x1={x1} x2={x2} y1={y1} y2={y1} class="anime-top" />
+      <line x1={x1} x2={x2} y1="12" y2="12" class="anime-middle" />
+      <line x1={x1} x2={x2} y1={y2} y2={y2} class="anime-bottom" />
     </svg>
   );
 }
 Menu.propTypes = {
-  yTop: PropTypes.number.isRequired,
-  yBottom: PropTypes.number.isRequired,
-  xStart: PropTypes.number.isRequired,
-  xEnd: PropTypes.number.isRequired,
+  coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default Menu;

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import { useState, useEffect } from "preact/hooks";
-import { capitalize } from "lodash";
+import { capitalize, debounce } from "lodash";
 import anime from "animejs";
 
 import MenuSVG from "../../svg/Menu";
@@ -89,12 +89,21 @@ export default function withNav(WrappedComponent) {
     }, [showMenu]);
 
     useEffect(() => {
-      function onKeydown(e) {
-        if (e.code === "Escape") setShowMenu(false);
-      }
+      const onKeydown = e => (e.code === "Escape" ? setShowMenu(false) : null);
+      const onResize = debounce(() => {
+        if (window.innerWidth >= 576) {
+          setShowMenu(false);
+          setShowMenuContent(false);
+        }
+      }, 400);
 
       window.addEventListener("keydown", onKeydown);
-      return () => window.removeEventListener("keydown", onKeydown);
+      window.addEventListener("resize", onResize);
+      return () => {
+        onResize.cancel;
+        window.removeEventListener("resize", onResize);
+        window.removeEventListener("keydown", onKeydown);
+      };
     }, []);
 
     return (
@@ -109,13 +118,10 @@ export default function withNav(WrappedComponent) {
             <MenuSVG
               class="menu"
               onClick={() => setShowMenu(!showMenu)}
-              yTop={yTop}
-              yBottom={yBottom}
-              xEnd={xEnd}
-              xStart={xStart}
+              coordinates={[xStart, yTop, xEnd, yBottom]}
             />
           </header>
-          <MobileNav showContent={showMenuContent} />
+          <MobileNav showContent={showMenu && showMenuContent} />
 
           <WrappedComponent {...props} />
         </section>
