@@ -4,7 +4,6 @@ $font-body: "Open Sans", sans-serif;
 
 // colors
 $grey: #444;
-$lavender: #e6dbff;
 $pink_blush: #eb8f90;
 $tangerine: #ffb471;
 $blue_light: #adbed2;
@@ -12,3 +11,9 @@ $blue_dark: #12406a;
 $white: #fafafa;
 $black: #141414;
 $error: #c02b23;
+
+// breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

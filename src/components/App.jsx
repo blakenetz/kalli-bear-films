@@ -14,7 +14,7 @@ import { routes } from "./HOC/WithNav/WithNav";
 export default class App extends Component {
   state = {
     hasNav: false,
-    showIntroAnim: true
+    showIntroAnim: true,
   };
 
   /** Gets fired when the route changes.
@@ -34,7 +34,7 @@ export default class App extends Component {
       <main id="app" class={classnames({ "with-nav": this.state.hasNav })}>
         <Router onChange={this.handleRoute}>
           <Portfolio path="/portfolio" />
-          <About path="/about" />
+          <About path="/about" title="My Story" />
           <Packages path="/packages" />
           <Contact path="/contact" />
           <Home

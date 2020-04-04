@@ -3,8 +3,7 @@ import withNav from "../../components/HOC/WithNav/WithNav";
 function About(props) {
   return (
     <section>
-      <div>
-        <h2>My story.</h2>
+      <article>
         <p>
           I am a Colorado native who is infatuated with capturing images. After
           graduating with a film and motion picture/television degree, I dove
@@ -13,9 +12,9 @@ function About(props) {
           things down and simplify the craft. Now, if there is one thing I love
           to do, it’s to tell a story.
         </p>
-      </div>
+      </article>
 
-      <div>
+      <article>
         <h2>Tell Your story.</h2>
         <p>
           You’ve already made one of the most important decisions of your life.
@@ -29,7 +28,7 @@ function About(props) {
           great-great-grandchildren will be able to watch a video of their
           great-great-grandparents having the time of their life.
         </p>
-      </div>
+      </article>
     </section>
   );
 }

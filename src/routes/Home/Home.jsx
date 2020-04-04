@@ -21,7 +21,7 @@ function Home(props) {
             easing: "easeInOutQuad",
             delay: 500,
             duration: 1500,
-            changeComplete: () => setAnimLoaded(true)
+            changeComplete: () => setAnimLoaded(true),
           });
       }
 
@@ -32,20 +32,20 @@ function Home(props) {
           opacity: [0.5, 1],
           scaleX: [0, 1],
           easing: "easeInOutExpo",
-          duration: 700
+          duration: 700,
         })
         .add({
           targets: "#anim-h1 .line",
           duration: 600,
           easing: "easeOutExpo",
-          translateY: (_el, i) => `${-0.625 + 0.625 * 2 * i}em` // 0.625em above/below text
+          translateY: (_el, i) => `${-0.625 + 0.625 * 2 * i}em`, // 0.625em above/below text
         })
         .add({
           targets: "#anim-h1 .letters",
           opacity: [0, 1],
           scaleY: [0.5, 1],
           easing: "easeOutExpo",
-          duration: 600
+          duration: 600,
         });
     }
 
@@ -129,7 +129,7 @@ function Home(props) {
 
 Home.propTypes = {
   showIntroAnim: PropTypes.bool.isRequired,
-  routes: PropTypes.arrayOf(PropTypes.string)
+  routes: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Home;

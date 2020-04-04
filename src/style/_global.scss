@@ -24,10 +24,32 @@ body {
 
 .with-nav {
   display: flex;
-  aside ~ section {
-    padding: 1rem;
-    min-height: 100%;
+
+  .page {
     width: 100%;
-    background: $lavender;
+    min-height: 100vh;
+    & > section {
+      padding: 1rem;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+main {
+  background: linear-gradient(226deg, $pink_blush, $white, $blue_light);
+  background-size: 600% 600%;
+  animation: gradientAnim 90s ease infinite;
+}
+
+@keyframes gradientAnim {
+  0% {
+    background-position: 0% 96%;
+  }
+  50% {
+    background-position: 100% 5%;
+  }
+  100% {
+    background-position: 0% 96%;
   }
 }
