@@ -98,7 +98,9 @@ export default function withNav(WrappedComponent) {
         if (window.innerWidth >= breakpoint) {
           setShowMenu(false);
           setShowMenuContent(false);
-          renderMenu(false);
+          setRenderMenu(false);
+        } else {
+          setRenderMenu(true);
         }
       }, 400);
 

@@ -3,7 +3,7 @@ const defaults = {
   stroke: "currentColor",
   "stroke-width": "2",
   "stroke-linecap": "round",
-  "stroke-linejoin": "round"
+  "stroke-linejoin": "round",
 };
 
 export function ErrorSVG(props) {
