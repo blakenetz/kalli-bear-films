@@ -2,7 +2,16 @@
   .offering {
     display: flex;
     margin: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 4em;
+    justify-content: center;
+
+    &:last-of-type {
+      margin-bottom: 2em;
+      .cell {
+        margin: 0 1em;
+        box-shadow: none;
+      }
+    }
   }
   .cell {
     padding: 1em;
@@ -11,6 +20,7 @@
     margin: 2em 0;
     position: relative;
     text-align: center;
+    flex-basis: 21rem;
 
     h3 {
       position: relative;

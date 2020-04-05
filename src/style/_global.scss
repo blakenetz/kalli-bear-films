@@ -37,7 +37,11 @@ body {
 
 main {
   min-height: 100%;
-  @include background-animation($pink_blush, $white, $blue_light);
+  @include background-animation(
+    rgba($pink_blush, 0.3),
+    $white,
+    rgba($blue_light, 0.3)
+  );
 }
 
 @keyframes gradientAnim {

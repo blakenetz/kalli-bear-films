@@ -120,16 +120,18 @@ export default function withNav(WrappedComponent) {
         </aside>
 
         <section class="page">
-          <header>
-            <h1>{capitalize(props.title || props.path.split("/")[1])}</h1>
-            <MenuSVG
-              class="menu"
-              onClick={() => setShowMenu(!showMenu)}
-              coordinates={[xStart, yTop, xEnd, yBottom]}
-            />
-          </header>
           {renderMenu && (
-            <MobileNav showContent={showMenu && showMenuContent} />
+            <>
+              <header>
+                <h1>{capitalize(props.title || props.path.split("/")[1])}</h1>
+                <MenuSVG
+                  class="menu"
+                  onClick={() => setShowMenu(!showMenu)}
+                  coordinates={[xStart, yTop, xEnd, yBottom]}
+                />
+              </header>
+              <MobileNav showContent={showMenu && showMenuContent} />
+            </>
           )}
 
           <WrappedComponent {...props} />
