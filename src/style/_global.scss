@@ -55,3 +55,41 @@ main {
     background-position: 0% 96%;
   }
 }
+
+button,
+[role="button"] {
+  text-transform: uppercase;
+  padding: 1rem;
+  background: $black;
+  border: 3px solid $white;
+  color: $white;
+  font-weight: 700;
+  letter-spacing: 0.15rem;
+  font-size: 1rem;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s;
+  outline: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
+    color: $black;
+
+    &:after {
+      width: 100%;
+    }
+  }
+
+  &:after {
+    content: "";
+    transition: all 0.3s;
+    position: absolute;
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: $white;
+  }
+}

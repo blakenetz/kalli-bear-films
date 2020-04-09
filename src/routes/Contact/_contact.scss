@@ -1,0 +1,80 @@
+.contact {
+  display: inline-flex;
+  justify-content: center;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 50rem;
+  }
+
+  .control {
+    position: relative;
+    padding: 1em;
+    flex: 1 1 50%;
+    min-width: 15rem;
+  }
+
+  input,
+  label,
+  textarea {
+    display: block;
+    width: 100%;
+  }
+
+  label {
+    padding-bottom: 0.5em;
+  }
+
+  input,
+  textarea {
+    height: 3.5em;
+    border: 1px solid $grey_light;
+    padding: 1em;
+    line-height: normal;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: baseline;
+
+    input {
+      width: auto;
+      height: auto;
+      margin-right: 1em;
+    }
+  }
+
+  textarea {
+    height: 15em;
+  }
+
+  .action {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  [type="submit"] {
+    position: relative;
+    margin: 1em;
+    color: $black;
+    border: 3px solid $black;
+    width: auto;
+    z-index: 1;
+
+    &:after {
+      background: $black;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $white;
+
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}
