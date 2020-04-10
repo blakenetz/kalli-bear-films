@@ -1,12 +1,17 @@
 .contact {
-  display: inline-flex;
-  justify-content: center;
+  max-width: 60rem;
+  margin: 0 auto;
 
   form {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 50rem;
+    width: 85%;
+    background: rgba($tangerine, 0.3);
+    position: relative;
+    margin-top: -4em;
+    padding-top: 3.5em;
+    margin-right: 0;
+    margin-left: auto;
   }
 
   .control {
@@ -76,5 +81,77 @@
         width: 100%;
       }
     }
+  }
+
+  figure {
+    margin: 0;
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  figcaption {
+    z-index: 5;
+    width: 45%;
+    .text-wrapper {
+      position: static;
+      width: 100%;
+      max-width: initial;
+      background: $white;
+      padding: 1em;
+      padding-bottom: 2em;
+    }
+
+    h2 {
+      text-align: right;
+    }
+  }
+
+  .img-wrapper {
+    width: 55%;
+    margin-top: 5%;
+    img {
+      position: relative;
+      height: auto;
+      border: 0;
+      width: 130%;
+      left: -30%;
+      overflow: visible;
+    }
+  }
+
+  h2,
+  p,
+  a {
+    margin: 1rem;
+    position: relative;
+    text-align: left;
+  }
+
+  h2 {
+    padding-bottom: 0.75em;
+    &::after {
+      @include gradient-underline($blue_light, $white);
+    }
+  }
+
+  a {
+    display: block;
+    color: rgba($blue_dark, 0.75);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $blue_dark;
+      text-decoration: underline;
+    }
+  }
+
+  article {
+    background: rgba($pink_blush, 0.3);
+    padding: 1em;
+    padding-bottom: 5em;
+    margin-top: -5em;
+    padding-top: 5em;
+    width: 85%;
   }
 }

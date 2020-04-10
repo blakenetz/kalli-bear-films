@@ -89,6 +89,34 @@ function Contact() {
 
   return (
     <section class="contact">
+      <figure>
+        <figcaption>
+          <div class="text-wrapper">
+            <h2>Let's chat!</h2>
+            <p>You can reach me at:</p>
+            <a
+              href="mailto:andreas@kallibearfilms.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              andreas@kallibearfilms.com
+            </a>
+            <a href="tel:9703430980">(970) 343-0980</a>
+          </div>
+        </figcaption>
+        <div class="img-wrapper">
+          <img
+            src="/assets/images/unsplash/pond-couple.jpg"
+            alt="Newly weds by a pont"
+          />
+        </div>
+      </figure>
+
+      <article>
+        <h2>Or I can reach out to you</h2>
+        <p>But first a couple details</p>
+      </article>
+
       <form onSubmit={handleSubmit}>
         {fields.map(f => {
           return (
