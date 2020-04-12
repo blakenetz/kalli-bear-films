@@ -36,6 +36,7 @@
     text-align: center;
     width: 100vw;
     height: 80vh;
+    z-index: 100;
 
     svg {
       display: block;
@@ -105,7 +106,7 @@
 
 header {
   position: relative;
-  z-index: 10;
+  z-index: 110;
   display: inline-flex;
   width: 100%;
   justify-content: space-between;

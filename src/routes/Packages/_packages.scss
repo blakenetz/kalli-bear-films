@@ -1,26 +1,10 @@
 .packages {
-  .offering {
-    display: flex;
-    margin: 1em;
-    justify-content: center;
-    margin-top: -4em;
-
-    &:last-of-type {
-      margin-bottom: 2em;
-      .cell {
-        margin: 0 1em;
-        box-shadow: none;
-      }
-    }
-  }
-  .cell {
+  @mixin cell {
     padding: 1em;
     background: rgba($blue_dark, 0.9);
     color: $white;
-    margin: 2em 0;
     position: relative;
     text-align: center;
-    flex-basis: 33%;
 
     h3 {
       position: relative;
@@ -30,22 +14,51 @@
         @include gradient-underline($blue_dark, $white);
       }
     }
+  }
 
-    &:nth-of-type(2) {
-      background: $white;
-      margin: 0;
-      color: $black;
-      box-shadow: 0px 10px 20px 2px rgba($black, 0.8);
-      z-index: 5;
-      h3 {
-        position: relative;
-        padding-bottom: 1em;
+  .offering {
+    display: flex;
+    margin: 1em;
+    justify-content: center;
+    flex-flow: row wrap;
 
-        &::after {
-          @include gradient-underline($white, $blue_dark);
+    .cell {
+      flex-basis: 33%;
+      margin: 2em 0;
+      min-width: 19rem;
+
+      &:nth-of-type(2) {
+        background: $white;
+        margin: 0;
+        color: $black;
+        box-shadow: $box-shadow;
+        z-index: 5;
+        h3 {
+          position: relative;
+          padding-bottom: 1em;
+
+          &::after {
+            @include gradient-underline($white, $blue_dark);
+          }
         }
       }
     }
+
+    // reset cell style for section offering section
+    &:nth-of-type(2) {
+      .cell {
+        margin: 0 1em;
+        @include cell;
+      }
+    }
+  }
+
+  .cell {
+    @include cell;
+  }
+
+  .negative-top {
+    margin-top: -4em;
   }
 
   h2 {
@@ -61,20 +74,22 @@
     list-style: none;
     padding: 0;
   }
+
   li {
     margin: 1em 0;
     display: inline-flex;
     align-items: center;
     width: 100%;
     text-align: left;
+  }
 
-    svg {
-      width: 24px;
-      height: 24px;
-      margin-right: 0.5em;
-      &:hover {
-        transform: rotate(15deg);
-      }
+  li svg,
+  td svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5em;
+    &:hover {
+      transform: rotate(15deg);
     }
   }
 
@@ -82,7 +97,7 @@
     margin: 0;
     display: flex;
     margin-bottom: 1em;
-    max-width: 60rem;
+    max-width: $max-width;
     margin: 0 auto;
 
     &:nth-of-type(2) {
@@ -103,6 +118,7 @@
   figcaption {
     z-index: 5;
     width: 25%;
+
     .text-wrapper {
       max-width: initial;
       background: $white;
@@ -113,6 +129,7 @@
       left: -60%;
       overflow: visible;
       margin-top: 80%;
+      box-shadow: $box-shadow;
     }
 
     h2 {
@@ -120,6 +137,77 @@
       padding-bottom: 1em;
       &::after {
         @include gradient-underline($pink_blush, $white);
+      }
+    }
+  }
+
+  .table-wrapper {
+    width: 100%;
+    max-width: 50em;
+    margin: 2em auto;
+    background: $white;
+    box-shadow: $box-shadow;
+    padding: 1em;
+    overflow-x: scroll;
+    max-width: $max-width;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tbody,
+    thead {
+      padding: 1em;
+    }
+
+    tr {
+      border-bottom: 1px solid $black;
+    }
+    tbody tr:last-of-type {
+      border-bottom: none;
+    }
+
+    td,
+    th {
+      text-align: center;
+      padding: 1em;
+      min-width: 6.5rem;
+    }
+
+    td:first-of-type {
+      text-align: left;
+    }
+
+    td.first {
+      display: inline-flex;
+      align-items: center;
+
+      svg {
+        height: 1rem;
+        width: auto;
+      }
+    }
+  }
+
+  .add-ons {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
+      grid-column-gap: 1em;
+      grid-row-gap: 1em;
+    }
+
+    article {
+      @include cell;
+      background: rgba($blue_dark, 0.8);
+
+      // span {
+      //   font-size: 0.8em;
+      // }
+
+      h3::after {
+        @include gradient-underline($tangerine, $white, $blue_light);
       }
     }
   }

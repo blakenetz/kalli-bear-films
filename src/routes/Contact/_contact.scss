@@ -1,5 +1,5 @@
 .contact {
-  max-width: 60rem;
+  max-width: $max-width;
   margin: 0 auto;
 
   form {
@@ -92,6 +92,7 @@
   figcaption {
     z-index: 5;
     width: 45%;
+
     .text-wrapper {
       position: static;
       width: 100%;
@@ -99,6 +100,7 @@
       background: $white;
       padding: 1em;
       padding-bottom: 2em;
+      box-shadow: $box-shadow;
     }
 
     h2 {
