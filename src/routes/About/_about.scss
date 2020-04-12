@@ -85,4 +85,20 @@
       }
     }
   }
+
+  @media screen and (max-width: $breakpoint-md) {
+    article figure {
+      flex-flow: column;
+
+      & > *,
+      [class*="wrapper"] {
+        width: 100%;
+        display: block;
+        position: relative;
+        margin: 0;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
 }
