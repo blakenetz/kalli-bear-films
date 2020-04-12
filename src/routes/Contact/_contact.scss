@@ -91,7 +91,7 @@
 
   figcaption {
     z-index: 5;
-    width: 45%;
+    width: 50%;
 
     .text-wrapper {
       position: static;
@@ -109,7 +109,7 @@
   }
 
   .img-wrapper {
-    width: 55%;
+    width: 50%;
     margin-top: 5%;
     img {
       position: relative;
@@ -155,5 +155,41 @@
     margin-top: -5em;
     padding-top: 5em;
     width: 85%;
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    figure {
+      flex-flow: column;
+
+      & > *,
+      [class*="wrapper"],
+      [class*="wrapper"] img {
+        width: 100%;
+        display: block;
+        position: relative;
+        margin: 0;
+        left: 0;
+        top: 0;
+      }
+
+      .text-wrapper {
+        width: 90%;
+        margin: 0;
+      }
+      .img-wrapper {
+        margin-top: -1em;
+      }
+    }
+
+    article,
+    form {
+      width: 95%;
+      position: relative;
+    }
+
+    article,
+    figcaption {
+      margin-left: 2%;
+    }
   }
 }
