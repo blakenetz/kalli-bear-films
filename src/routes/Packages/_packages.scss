@@ -18,14 +18,13 @@
 
   .offering {
     display: flex;
-    margin: 1em;
     justify-content: center;
     flex-flow: row wrap;
+    width: 100%;
 
     .cell {
       flex-basis: 33%;
       margin: 2em 0;
-      min-width: 19rem;
 
       &:nth-of-type(2) {
         background: $white;
@@ -143,7 +142,6 @@
 
   .table-wrapper {
     width: 100%;
-    max-width: 50em;
     margin: 2em auto;
     background: $white;
     box-shadow: $box-shadow;
@@ -202,12 +200,26 @@
       @include cell;
       background: rgba($blue_dark, 0.8);
 
-      // span {
-      //   font-size: 0.8em;
-      // }
-
       h3::after {
         @include gradient-underline($tangerine, $white, $blue_light);
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-lg) {
+    .offering {
+      .cell {
+        flex-basis: 100%;
+        margin: 0 1em;
+      }
+
+      &:nth-of-type(2) {
+        .cell:nth-of-type(2) {
+          color: $black;
+          background: $white;
+          box-shadow: $box-shadow;
+          margin: 0;
+        }
       }
     }
   }
