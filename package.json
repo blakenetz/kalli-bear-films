@@ -14,9 +14,7 @@
     "lint": "eslint src",
     "test": "jest",
     "predeploy": "preact build --no-prerender",
-    "deploy": "gh-pages -d build",
-    "scrape:py": "python3 scraper/scraper.py",
-    "scrape:js": "node --trace-warnings scraper/scraper.js"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "preact",
@@ -39,6 +37,8 @@
   },
   "dependencies": {
     "animejs": "^3.1.0",
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
     "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
