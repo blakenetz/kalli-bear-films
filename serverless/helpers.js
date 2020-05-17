@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 
-function extractReviewsFromHtml(html) {
+function extractFromWeddingWire(html) {
   const $ = cheerio.load(html);
 
   function extractReviewData(el, selector, child) {
@@ -41,6 +41,15 @@ function extractReviewsFromHtml(html) {
   return { rating, reviews };
 }
 
+function extractFromTheKnot(html) {
+  const $ = cheerio.load(html);
+
+  const rating = $(".styles__overall-rating___1JlCr").first().text().trim();
+
+  return { rating };
+}
+
 module.exports = {
-  extractReviewsFromHtml,
+  extractFromWeddingWire,
+  extractFromTheKnot,
 };
