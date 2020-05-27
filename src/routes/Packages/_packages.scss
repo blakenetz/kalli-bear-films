@@ -82,6 +82,10 @@
     text-align: left;
   }
 
+  li span:focus {
+    outline: none;
+  }
+
   li svg,
   td svg {
     width: 24px;
