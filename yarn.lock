@@ -7990,6 +7990,11 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.2
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
+preact-async-route@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/preact-async-route/-/preact-async-route-2.2.1.tgz#729f8f8650281973251fbbf852d5004f32f48594"
+  integrity sha512-8bg1007akXs3YDmzYT4McaTe6ji2FIzcc0/NTlu+vjJaKPNQ8lNG/HQ6LP+FoIxQ4m/KH5vvJCHJN5ADp2iNGA==
+
 preact-cli@^3.0.0-rc.10:
   version "3.0.0-rc.10"
   resolved "https://registry.yarnpkg.com/preact-cli/-/preact-cli-3.0.0-rc.10.tgz#86614f30fe133c959c841d75dc075b2bafe7dadb"
