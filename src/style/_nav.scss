@@ -1,0 +1,24 @@
+header {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+
+  nav {
+    padding: 0 1rem;
+    max-width: $max-width;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  button {
+    margin-left: 1rem;
+  }
+
+  img {
+    height: 9rem;
+    width: auto;
+    margin: 1rem 0;
+  }
+}

@@ -20,8 +20,20 @@ export default class App extends Component {
   render() {
     return (
       <main id="app">
+        <header>
+          <nav>
+            <a>
+              <img src="/assets/icons/logo.png" />
+            </a>
+            <div>
+              {routes.map(route => (
+                <button key={route}>{route}</button>
+              ))}
+            </div>
+          </nav>
+        </header>
         <Router onChange={this.handleRoute}>
-          <Home default routes={routes} />
+          <Home default />
         </Router>
       </main>
     );
