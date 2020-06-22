@@ -7,6 +7,9 @@ function Home(props) {
   return (
     <section class="home">
       <article>
+        <aside>
+          <img />
+        </aside>
         <h1>A Day To Remember</h1>
         <figure>
           <img
