@@ -25,11 +25,7 @@ body {
 
 main {
   min-height: 100%;
-  @include background-animation(
-    rgba($green_light_1, 0.8),
-    $white,
-    rgba($green_light_2, 0.8)
-  );
+  background: $green_light_1;
 }
 
 @keyframes gradientAnim {

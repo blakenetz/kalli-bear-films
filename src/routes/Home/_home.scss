@@ -1,14 +1,72 @@
 .home {
+  $back-pos: ();
+  @for $i from 0 through 13 {
+    $back-pos: append($back-pos, (($i * 4) + vh) 0, $separator: comma);
+  }
+
   position: relative;
   min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
 
-  figure {
-    margin: 0;
-    img {
-      width: 100%;
+  .row-img {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    position: relative;
+
+    figure {
+      margin: 0;
+      display: flex;
+      align-items: flex-end;
+      z-index: 5;
+      position: relative;
+      img,
+      .dot-shadow {
+        width: auto;
+        height: auto;
+        max-width: calc(100% - 8rem); // figcaption text
+        max-height: calc(100vh - 200px); // header
+      }
+      .dot-shadow {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-image: radial-gradient(circle, black, 15%, transparent 0);
+        background-repeat: repeat-y;
+        background-size: cover;
+        background-position: $back-pos;
+      }
+
+      figcaption {
+        margin-right: -7rem;
+        h1 {
+          font-size: 3rem;
+          margin: 0 0 2rem 0;
+          background: $green_light_1;
+          span {
+            mix-blend-mode: difference;
+            color: white;
+            display: block;
+            text-align: right;
+            &:last-of-type {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .splatter {
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      img {
+        width: 100vw;
+      }
     }
   }
 }

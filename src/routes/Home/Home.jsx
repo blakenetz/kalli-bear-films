@@ -1,22 +1,32 @@
 import { useEffect, useCallback, useState } from "preact/hooks";
 import anime from "animejs";
 import classnames from "classnames";
-import PropTypes from "prop-types";
+import { words } from "lodash";
 
 function Home(props) {
   return (
     <section class="home">
-      <article>
-        <aside>
-          <img />
-        </aside>
-        <h1>A Day To Remember</h1>
+      <article class="row-img">
         <figure>
+          <figcaption>
+            <h1>
+              {words("A Day To Remember").map(word => (
+                <span>{word}</span>
+              ))}
+            </h1>
+          </figcaption>
+          <div class="dot-shadow" />
           <img
             src="/assets/images/black-and-white-dance.jpeg"
             alt="Dancing couple"
           />
         </figure>
+        <div class="splatter">
+          <img src="/assets/flairs/gold-splatter-5.png" alt="" />
+          <img src="/assets/flairs/gold-splatter-2.png" alt="" />
+        </div>
+
+        <img src="/assets/flairs/gold-splatter-2.png" alt="" />
       </article>
     </section>
   );
