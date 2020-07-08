@@ -15,11 +15,12 @@ function Home(props) {
               ))}
             </h1>
           </figcaption>
-          <div class="dot-shadow" />
-          <img
-            src="/assets/images/black-and-white-dance.jpeg"
-            alt="Dancing couple"
-          />
+          <div class="img">
+            <img
+              src="/assets/images/black-and-white-dance.jpeg"
+              alt="Dancing couple"
+            />
+          </div>
         </figure>
         <div class="splatter">
           <img src="/assets/flairs/gold-splatter-5.png" alt="" />
