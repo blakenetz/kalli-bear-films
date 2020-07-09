@@ -4,49 +4,52 @@
   width: 100vw;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+
+  .splatter {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    text-align: center;
+    img {
+      width: 95vw;
+    }
+    .olive {
+      position: absolute;
+      width: 80vw;
+      left: 0;
+      top: -4rem;
+    }
+  }
 
   .row-img {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
 
     figure {
       margin: 0;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       z-index: 5;
 
-      .img {
+      img {
         width: auto;
         height: auto;
         max-width: calc(100% - 8rem); // figcaption text
-        max-height: calc(100vh - 200px); // header
-
-        &::before {
-          content: "";
-          width: 100%;
-          height: 100%;
-          background-image: radial-gradient(#21211e 45%, transparent 0);
-          background-size: 8px 8px;
-          bottom: -100px;
-          left: -100px;
-          z-index: -1;
-        }
-      }
-      img {
-        width: auto;
-        height: 100%;
-        // max-width: calc(100% - 8rem); // figcaption text
-        // max-height: calc(100vh - 200px); // header
+        max-height: calc(100vh); // header
       }
 
       figcaption {
-        margin-right: -7rem;
+        margin-right: -10rem;
         h1 {
-          font-size: 3rem;
-          margin: 0 0 2rem 0;
+          font-size: 5rem;
+          font-weight: 100;
+          margin: 2rem;
           background: $green_light_1;
+          border-radius: 25px;
           span {
             mix-blend-mode: difference;
             color: white;
@@ -59,15 +62,29 @@
         }
       }
     }
+  }
 
-    .splatter {
+  .testimony {
+    display: flex;
+    justify-content: flex-end;
+    .p-wrapper {
+      width: 100%;
+      max-width: 800px;
       z-index: 1;
-      position: absolute;
-      top: 0;
-      width: 100vw;
-      img {
-        width: 100vw;
-      }
+      margin: 4rem;
+      // background: $green_light_2;
+      // box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
+      // 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+    }
+    p {
+      background: $green_light_1;
+      margin: 1rem;
+      line-height: 2;
+      padding: 0.5rem;
+      border-radius: 25px;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 1.25rem;
     }
   }
 }
