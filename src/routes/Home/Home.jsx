@@ -11,22 +11,29 @@ function Home(props) {
         <img src="/assets/flairs/gold-splatter-1.png" alt="" />
         <img src="/assets/flairs/gold-splatter-3.png" alt="" />
       </div>
-      <article class="row-img">
+      <article class="title">
+        <h1>
+          {words("Kalli Bear Films").map(word => (
+            <span>{word}</span>
+          ))}
+        </h1>
+      </article>
+      <article class="image">
         <figure>
-          <figcaption>
-            <h1>
-              {words("A Day To Remember").map(word => (
-                <span>{word}</span>
-              ))}
-            </h1>
-          </figcaption>
           <img
             src="/assets/images/black-and-white-dance.jpeg"
             alt="Dancing couple"
           />
+          <figcaption>
+            <h2>
+              {words("A Day To Remember").map(word => (
+                <span>{word}</span>
+              ))}
+            </h2>
+          </figcaption>
         </figure>
       </article>
-      <article class="testimony">
+      {/* <article class="testimony">
         <div class="p-wrapper">
           <p>
             "It’s impossible to see all the micro moments the day of your
@@ -40,7 +47,7 @@ function Home(props) {
             your wedding day."
           </p>
         </div>
-      </article>
+      </article> */}
     </section>
   );
 }

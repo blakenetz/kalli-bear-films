@@ -2,6 +2,10 @@ header {
   width: 100%;
   display: inline-flex;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  background: $green-light-1;
+  z-index: 100;
 
   nav {
     padding: 0 1rem;
