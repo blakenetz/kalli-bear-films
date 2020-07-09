@@ -1,14 +1,16 @@
 import { Component } from "preact";
 import { Router } from "preact-router";
 import AsyncRoute from "preact-async-route";
-import classnames from "classnames";
+import LocomotiveScroll from "locomotive-scroll";
+
+import Nav from "../components/Navs";
 
 // Code-splitting is automated for routes
 import Home from "../routes/Home/Home";
 
-const routes = ["portfolio", "about", "packages", "contact"];
-
 export default class App extends Component {
+  scroll = new LocomotiveScroll();
+
   /** Gets fired when the route changes.
    *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
    *	@param {string} event.url	The newly routed URL
@@ -20,18 +22,7 @@ export default class App extends Component {
   render() {
     return (
       <main id="app">
-        <header>
-          <nav>
-            <a>
-              <img src="/assets/icons/logo.png" />
-            </a>
-            <div>
-              {routes.map(route => (
-                <button key={route}>{route}</button>
-              ))}
-            </div>
-          </nav>
-        </header>
+        <Nav />
         <Router onChange={this.handleRoute}>
           <Home default />
         </Router>
