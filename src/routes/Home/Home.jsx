@@ -4,8 +4,8 @@ function Home() {
   return (
     <section class="home" data-scroll-container>
       <div class="splatter">
-        <img src="/assets/flairs/olive-3.png" alt="" class="olive" />
-        <img src="/assets/flairs/gold-splatter-1.png" alt="" />
+        <img src="/assets/flairs/olive-3-white.png" alt="" class="olive" />
+        <img src="/assets/flairs/gold-splatter-1.png" class="flip" alt="" />
         <img src="/assets/flairs/gold-splatter-3.png" alt="" />
       </div>
       <article class="title" data-scroll-section>
@@ -22,12 +22,29 @@ function Home() {
             alt="Dancing couple"
           />
           <figcaption>
+            <h2>
+              {words("Wedding and Elopement Videography").map(word => (
+                <span data-scroll data-scroll-speed="5">
+                  {word}
+                </span>
+              ))}
+            </h2>
+          </figcaption>
+        </figure>
+      </article>
+      <article class="image reverse" data-scroll-section>
+        <figure data-scroll>
+          <figcaption>
             <h2 data-scroll>
               {words("A Day To Remember").map(word => (
                 <span>{word}</span>
               ))}
             </h2>
           </figcaption>
+          <img
+            src="/assets/images/unsplash/black-and-white-kiss.jpg"
+            alt="Kissing couple"
+          />
         </figure>
       </article>
     </section>
