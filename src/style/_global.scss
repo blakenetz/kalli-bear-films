@@ -11,10 +11,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $black;
+  position: relative;
 
   * svg.error {
     stroke: $error;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.header {
+  font-family: $font-header;
 }
 
 *,
@@ -22,27 +32,9 @@ body {
   box-sizing: border-box;
 }
 
-.with-nav {
-  display: flex;
-
-  .page {
-    width: 100%;
-    min-height: 100vh;
-    & > section {
-      padding: 1rem;
-      width: 100%;
-    }
-    overflow: auto;
-  }
-}
-
 main {
   min-height: 100%;
-  @include background-animation(
-    rgba($pink_blush, 0.3),
-    $white,
-    rgba($blue_light, 0.3)
-  );
+  background: $green_light_1;
 }
 
 @keyframes gradientAnim {
@@ -61,9 +53,9 @@ button,
 [role="button"] {
   text-transform: uppercase;
   padding: 1rem;
-  background: $black;
-  border: 3px solid $white;
-  color: $white;
+  background: $white;
+  border: 3px solid $green_olive;
+  color: $green_olive;
   font-weight: 700;
   letter-spacing: 0.15rem;
   font-size: 1rem;
@@ -72,10 +64,11 @@ button,
   transition: all 0.3s;
   outline: none;
   background: none;
+  z-index: 0;
 
   &:hover {
     cursor: pointer;
-    color: $black;
+    color: $white;
 
     &:after {
       width: 100%;
@@ -91,6 +84,11 @@ button,
     height: 100%;
     top: 0;
     left: 0;
-    background: $white;
+    background: $green_olive;
   }
+}
+
+a {
+  text-decoration: none;
+  color: $green_olive;
 }

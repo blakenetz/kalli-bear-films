@@ -1,0 +1,98 @@
+/* Cormorant */
+// regular
+@font-face {
+  font-family: "Cormorant";
+  font-weight: normal;
+  font-style: normal;
+  src: local("Cormorant"),
+    url("/assets/fonts/Cormorant/Cormorant-Regular.ttf") format("truetype");
+}
+// italic
+@font-face {
+  font-family: "Cormorant";
+  font-weight: normal;
+  font-style: italic;
+  src: local("Cormorant Italic"),
+    url("/assets/fonts/Cormorant/Cormorant-Italic.ttf") format("truetype");
+}
+// bold
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Cormorant Medium"),
+    url("/assets/fonts/Cormorant/Cormorant-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 600;
+  src: local("Cormorant SemiBold"),
+    url("/assets/fonts/Cormorant/Cormorant-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Cormorant Bold"),
+    url("/assets/fonts/Cormorant/Cormorant-Bold.ttf") format("truetype");
+}
+// bold italic
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 500;
+  src: local("Cormorant Medium Italic"),
+    url("/assets/fonts/Cormorant/Cormorant-MediumItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 600;
+  src: local("Cormorant SemiBold Italic"),
+    url("/assets/fonts/Cormorant/Cormorant-SemiBoldItalic.ttf")
+      format("truetype");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Cormorant Bold Italic"),
+    url("/assets/fonts/Cormorant/Cormorant-BoldItalic.ttf") format("truetype");
+}
+// light
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 200;
+  src: local("Cormorant Light"),
+    url("/assets/fonts/Cormorant/Cormorant-Light.ttf") format("truetype");
+}
+// light italic
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 200;
+  src: local("Cormorant Light Italic"),
+    url("/assets/fonts/Cormorant/Cormorant-LightItalic.ttf") format("truetype");
+}
+
+/* Golden Script */
+@font-face {
+  font-family: "Golden Script";
+  font-weight: normal;
+  font-style: normal;
+  src: local("Golden Script"),
+    url("/assets/fonts/Golden-Script/golden_script.ttf") format("truetype"),
+    url("/assets/fonts/Golden-Script/golden_script.otf") format("opentype");
+}
+
+/* NF OXYA */
+@font-face {
+  font-family: "NF OXYA";
+  font-weight: normal;
+  font-style: normal;
+  src: local("NF OXYA"),
+    url("/assets/fonts/NF-OXYA/NF-OXYA-Regular.ttf") format("truetype"),
+    url("/assets/fonts/NF-OXYA/NF-OXYA-Regular.otf") format("opentype");
+}

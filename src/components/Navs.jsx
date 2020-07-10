@@ -1,79 +1,43 @@
+import { useEffect, useState, useRef } from "preact/hooks";
 import { Link } from "preact-router/match";
+import { debounce } from "lodash";
 import classnames from "classnames";
-import PropTypes from "prop-types";
 
-import { routes, startPoints } from "./HOC/WithNav/WithNav";
+const routes = ["portfolio", "about", "packages", "contact"];
 
-export function DesktopNav() {
+export default function Nav() {
+  const ref = useRef();
+  const [shrink, setShrink] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShrink(window.scrollY > (shrink ? 65 : 10));
+    };
+    const debounced = debounce(handleScroll, 50);
+
+    window.addEventListener("scroll", debounced, {
+      passiveIfSupported: true,
+    });
+
+    return () => {
+      debounced.cancel;
+      window.removeEventListener("scroll", debounced);
+    };
+  }, []);
+
   return (
-    <nav class="nav">
-      <a href="/">
-        <h1>Kalli Bear Films</h1>
-      </a>
-      <ul>
-        {routes.map(route => (
-          <li>
-            <Link href={`/${route}`} activeClassName="active">
-              {route}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <header class={classnames({ shrink })} ref={ref}>
+      <nav class="nav">
+        <a href="/">
+          <img src="/assets/icons/logo.png" />
+          <h1>Kalli Bear Films</h1>
+        </a>
+        <div>
+          {routes.map(route => (
+            <button key={route}>{route}</button>
+          ))}
+        </div>
+      </nav>
+    </header>
   );
 }
-
-function Animate() {
-  return (
-    <animate
-      attributeName="stop-color"
-      values="#ffb471;#eb8f90;#fafafa;#ffb471"
-      dur="20s"
-      repeatCount="indefinite"
-    />
-  );
-}
-
-export function MobileNav(props) {
-  return (
-    <nav class="nav mobile">
-      <svg viewBox="0 0 215 110" preserveAspectRatio="none">
-        <polygon
-          class="anime-target"
-          fill="url(#gradient)"
-          points={startPoints}
-        />
-
-        <defs>
-          <linearGradient id="gradient" x1="100%" y1="100%">
-            <stop offset="0%" stop-color="#ffb471">
-              <Animate />
-            </stop>
-            <stop offset="100%" stop-color="#ffb471">
-              <Animate />
-              <animate
-                attributeName="offset"
-                values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95"
-                dur="14s"
-                repeatCount="indefinite"
-              />
-            </stop>
-          </linearGradient>
-        </defs>
-      </svg>
-
-      <ul class={classnames({ showing: props.showContent })}>
-        {routes.map(route => (
-          <li>
-            <Link href={`/${route}`} activeClassName="active">
-              {route}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-MobileNav.propTypes = {
-  showContent: PropTypes.bool.isRequired,
-};

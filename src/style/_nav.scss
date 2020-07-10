@@ -1,0 +1,55 @@
+header {
+  $duration: 0.3s;
+
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background-color: $green-light-1;
+  z-index: 100;
+  transition-property: background-color;
+  transition-duration: $duration;
+
+  &.shrink {
+    background-color: $green-light-2;
+    box-shadow: 0 3px 6px 0 $green-olive;
+    img {
+      height: 3rem;
+    }
+    h1 {
+      display: block;
+    }
+  }
+
+  nav {
+    padding: 0 1rem;
+    max-width: $max-width;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  button {
+    margin-left: 1rem;
+  }
+
+  img {
+    transition-property: height;
+    transition-duration: $duration;
+    height: 9rem;
+    width: auto;
+    margin: 1rem 0;
+  }
+  h1 {
+    display: none;
+    text-decoration: none;
+    padding: 0 1rem;
+  }
+}

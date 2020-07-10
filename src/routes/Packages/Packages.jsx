@@ -1,4 +1,5 @@
 import { h } from "preact";
+import { useRef, useCallback } from "preact/hooks";
 import PropTypes from "prop-types";
 import { map, reduce, forIn, flatMap, startCase } from "lodash";
 import classnames from "classnames";
@@ -28,42 +29,55 @@ const { baseCardValues, values } = reduce(
       content: 0,
       icon: Clock,
       listContent: "Hours of Coverage",
+      sound: "hihat",
     },
-    ceremonyFilm: { content: false, icon: Film, listContent: "Ceremony Film" },
+    ceremonyFilm: {
+      content: false,
+      icon: Film,
+      listContent: "Ceremony Film",
+      sound: "clap",
+    },
     cinematicShort: {
       content: false,
       icon: Film,
       listContent: "Cinematic Short Film Edit (3-5 minutes)",
+      sound: "clap",
     },
     cinematicFeature: {
       content: false,
       icon: Video,
       listContent: "Cinematic Feature Film Edit (15-40 minutes)",
+      sound: "kick",
     },
     rawContent: {
       content: false,
       icon: Box,
-      listContent: "RAW content delivery (Audio &amp; Video)",
+      listContent: "RAW content delivery (Audio & Video)",
+      sound: "kick",
     },
     consultation: {
       content: true,
       icon: Message,
       listContent: "Consultation (In person/Over the phone/Skype)",
+      sound: "kick",
     },
     "4k Video": {
       content: true,
       icon: Aperture,
       listContent: "Filmed in Highest Quality 4k Video",
+      sound: "clap",
     },
     highQualityAudio: {
       content: true,
       icon: Speaker,
       listContent: "Highest Quality Audio",
+      sound: "kick",
     },
     digitalDownload: {
       content: true,
       icon: Download,
       listContent: "Digital Download & YouTube Link",
+      sound: "hihat",
     },
   },
   (acc, val, key) => {
@@ -238,93 +252,134 @@ function Figure(props) {
 }
 
 function Packages() {
+  const hihatRef = useRef();
+  const clapRef = useRef();
+  const kickRef = useRef();
+
+  const handleSound = useCallback(
+    key => () => {
+      const { sound } = values[key];
+
+      switch (sound) {
+        case "hihat":
+          hihatRef.current.currentTime = 0;
+          hihatRef.current.play();
+          break;
+
+        case "kick":
+          kickRef.current.currentTime = 0;
+          kickRef.current.play();
+          break;
+
+        default:
+        case "clap":
+          clapRef.current.currentTime = 0;
+          clapRef.current.play();
+          break;
+      }
+    },
+    []
+  );
+
   return (
-    <section class="packages">
-      {sortedPackages.map(pack => (
-        <>
-          <Figure {...pack} />
-          <section class="offering negative-top">
-            {pack.cards.map(card => (
-              <article class="cell">
+    <>
+      <audio preload="auto" src="/samples/clap.wav" ref={clapRef} />
+      <audio preload="auto" src="/samples/hihat.wav" ref={hihatRef} />
+      <audio preload="auto" src="/samples/kick.wav" ref={kickRef} />
+
+      <section class="packages">
+        {sortedPackages.map(pack => (
+          <>
+            <Figure {...pack} />
+            <section class="offering negative-top">
+              {pack.cards.map(card => (
+                <article class="cell">
+                  <h3>
+                    {card.name} Package: ${card.price}
+                  </h3>
+                  <p>{card.description}</p>
+                  <ul>
+                    {map(card, (val, key) =>
+                      !!val && values[key] && values[key].listContent ? (
+                        <li>
+                          <span
+                            onFocus={handleSound(key)}
+                            onMouseEnter={handleSound(key)}
+                            tabIndex={1}
+                          >
+                            {h(values[key].icon)}
+                          </span>
+                          <span>
+                            {val} {values[key].listContent}
+                          </span>
+                        </li>
+                      ) : null
+                    )}
+                  </ul>
+                </article>
+              ))}
+            </section>
+          </>
+        ))}
+
+        <section class="add-ons negative-top">
+          <Figure
+            imgSrc="/assets/images/unsplash/cropped-bride.jpg"
+            imgAlt="Image of a bride cropped by her future husband"
+            title="Add Ons"
+          />
+          <div class="grid negative-top">
+            {addOns.map(item => (
+              <article>
                 <h3>
-                  {card.name} Package: ${card.price}
+                  {item.name}
+                  {Boolean(item.note) && <sup>*</sup>}
                 </h3>
-                <p>{card.description}</p>
-                <ul>
-                  {map(card, (val, key) =>
-                    !!val && values[key] && values[key].listContent ? (
-                      <li>
-                        {h(values[key].icon)}
-                        <span>
-                          {val} {values[key].listContent}
-                        </span>
-                      </li>
-                    ) : null
-                  )}
-                </ul>
+                <p>{item.price}</p>
+                <p>{item.description}</p>
+                {Boolean(item.note) && (
+                  <p>
+                    <sup>*</sup>
+                    <em>{item.note}</em>
+                  </p>
+                )}
               </article>
             ))}
-          </section>
-        </>
-      ))}
+          </div>
+        </section>
 
-      <section class="add-ons negative-top">
-        <Figure
-          imgSrc="/assets/images/unsplash/cropped-bride.jpg"
-          imgAlt="Image of a bride cropped by her future husband"
-          title="Add Ons"
-        />
-        <div class="grid negative-top">
-          {addOns.map(item => (
-            <article>
-              <h3>
-                {item.name}
-                {Boolean(item.note) && <sup>*</sup>}
-              </h3>
-              <p>{item.price}</p>
-              <p>{item.description}</p>
-              {Boolean(item.note) && (
-                <p>
-                  <sup>*</sup>
-                  <em>{item.note}</em>
-                </p>
-              )}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              {table.head.map(th => (
-                <th>{th}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {map(table.body, arr => (
+        <section class="table-wrapper">
+          <table>
+            <thead>
               <tr>
-                {arr.map((val, i) => (
-                  <td class={classnames({ first: i === 0 })}>
-                    {i === 0 && h(values[val].icon)}
-
-                    {val === true ? (
-                      <Check />
-                    ) : val === false ? (
-                      ""
-                    ) : (
-                      <span>{startCase(val)}</span>
-                    )}
-                  </td>
+                {table.head.map(th => (
+                  <th>{th}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {map(table.body, arr => (
+                <tr>
+                  {arr.map((val, i) => (
+                    <td class={classnames({ first: i === 0 })}>
+                      {i === 0 && h(values[val].icon)}
+
+                      {val === true ? (
+                        <Check />
+                      ) : val === false ? (
+                        ""
+                      ) : (
+                        <span>{startCase(val)}</span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
       </section>
-    </section>
+    </>
   );
 }
 
