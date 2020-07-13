@@ -5,8 +5,7 @@ import classnames from "classnames";
 import anime from "animejs";
 import { debounce } from "lodash";
 
-import withNav from "../../components/HOC/WithNav/WithNav";
-import { ErrorSVG, PlaySVG } from "../../components/svg/VideoControls";
+import { ErrorSVG, PlaySVG } from "../svg/VideoControls";
 
 const videos = [
   { id: "GUiVqvsaOww", couple: "Luke and Casey" },
@@ -153,4 +152,4 @@ function Portfolio() {
   );
 }
 
-export default withNav(Portfolio);
+export default Portfolio;

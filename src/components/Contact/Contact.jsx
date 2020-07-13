@@ -1,6 +1,5 @@
 import { useCallback, useReducer } from "preact/hooks";
 import { reduce } from "lodash";
-import withNav from "../../components/HOC/WithNav/WithNav";
 
 const fields = [
   { label: "Name", autoComplete: "name", required: true },
@@ -153,4 +152,4 @@ function Contact() {
   );
 }
 
-export default withNav(Contact);
+export default Contact;
