@@ -5,7 +5,7 @@ import classnames from "classnames";
 import anime from "animejs";
 import { debounce } from "lodash";
 
-import { ErrorSVG, PlaySVG } from "../svg/VideoControls";
+import { ErrorSVG, PlaySVG } from "./svg/VideoControls";
 
 const videos = [
   { id: "GUiVqvsaOww", couple: "Luke and Casey" },

@@ -4,8 +4,8 @@ import AsyncRoute from "preact-async-route";
 import { startCase } from "lodash";
 
 import Nav from "./Nav";
-import Home from "./Home/Home";
-import Loader from "./Loader/Loader";
+import Home from "./Home";
+import Loader from "./Loader";
 import { routes } from "../util";
 
 export default class App extends Component {

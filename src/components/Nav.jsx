@@ -11,7 +11,7 @@ export default function Nav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShrink(window.scrollY > (shrink ? 65 : 10));
+      setShrink(window.scrollY > 0);
     };
     const debounced = debounce(handleScroll, 50);
 

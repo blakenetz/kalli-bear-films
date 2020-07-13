@@ -15,7 +15,7 @@ import {
   Package as Box,
   Check,
   DollarSign,
-} from "../svg/PackageControls";
+} from "./svg/PackageControls";
 
 const WeddingOfferings = "Wedding Offerings";
 
