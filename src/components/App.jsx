@@ -5,6 +5,7 @@ import { startCase } from "lodash";
 
 import Nav from "./Nav";
 import Home from "./Home/Home";
+import Loader from "./Loader/Loader";
 import { routes } from "../util";
 
 export default class App extends Component {
@@ -26,7 +27,7 @@ export default class App extends Component {
               key={route.path}
               path={`/${route.path}`}
               getComponent={route.getComponent}
-              loading={() => <div>loading...</div>}
+              loading={() => <Loader />}
             />
           ))}
         </Router>
