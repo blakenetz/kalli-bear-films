@@ -1,8 +1,13 @@
 .portfolio {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-column-gap: 2rem;
   padding: 2rem;
+  background-image: url("../assets/flairs/olive-1.png");
+  background-position: right;
+  min-height: 77vh;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-column-gap: 2rem;
+  }
 
   .cell {
     position: relative;
