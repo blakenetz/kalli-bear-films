@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { map, reduce, forIn, flatMap, startCase } from "lodash";
 import classnames from "classnames";
 
-import withNav from "../../components/HOC/WithNav/WithNav";
 import {
   Clock,
   Message,
@@ -16,7 +15,7 @@ import {
   Package as Box,
   Check,
   DollarSign,
-} from "../../components/svg/PackageControls";
+} from "./svg/PackageControls";
 
 const WeddingOfferings = "Wedding Offerings";
 
@@ -389,4 +388,4 @@ Figure.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default withNav(Packages);
+export default Packages;

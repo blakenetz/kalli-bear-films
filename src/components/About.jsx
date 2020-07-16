@@ -1,5 +1,3 @@
-import withNav from "../../components/HOC/WithNav/WithNav";
-
 function About(props) {
   return (
     <section class="about">
@@ -51,4 +49,4 @@ function About(props) {
   );
 }
 
-export default withNav(About);
+export default About;

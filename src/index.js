@@ -7,7 +7,6 @@ if (process.env.NODE_ENV === "development") {
 
 // styles
 import "./style/index.scss";
-import "locomotive-scroll/dist/locomotive-scroll.min.css";
 
 import App from "./components/App";
 

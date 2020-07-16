@@ -9,8 +9,9 @@
 
 // components and routes
 @import "./nav";
-@import "../routes/About/about";
-@import "../routes/Contact/contact";
-@import "../routes/Home/home";
-@import "../routes/Packages/packages";
-@import "../routes/Portfolio/portfolio";
+@import "./about";
+@import "./contact";
+@import "./home";
+@import "./packages";
+@import "./portfolio";
+@import "./loader";

@@ -92,3 +92,11 @@ a {
   text-decoration: none;
   color: $green_olive;
 }
+
+.flip {
+  transform: scaleX(-1);
+}
+
+.sr {
+  visibility: hidden;
+}

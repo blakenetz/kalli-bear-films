@@ -3,7 +3,7 @@ import { Link } from "preact-router/match";
 import { debounce } from "lodash";
 import classnames from "classnames";
 
-const routes = ["portfolio", "about", "packages", "contact"];
+import { routes } from "../util";
 
 export default function Nav() {
   const ref = useRef();
@@ -11,7 +11,7 @@ export default function Nav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShrink(window.scrollY > (shrink ? 65 : 10));
+      setShrink(window.scrollY > 0);
     };
     const debounced = debounce(handleScroll, 50);
 
@@ -23,18 +23,20 @@ export default function Nav() {
       debounced.cancel;
       window.removeEventListener("scroll", debounced);
     };
-  }, []);
+  }, [shrink]);
 
   return (
     <header class={classnames({ shrink })} ref={ref}>
       <nav class="nav">
-        <a href="/">
+        <Link href="/">
           <img src="/assets/icons/logo.png" />
           <h1>Kalli Bear Films</h1>
-        </a>
+        </Link>
         <div>
-          {routes.map(route => (
-            <button key={route}>{route}</button>
+          {routes.map(({ path }) => (
+            <Link href={`/${path}`}>
+              <button key={path}>{path}</button>
+            </Link>
           ))}
         </div>
       </nav>
