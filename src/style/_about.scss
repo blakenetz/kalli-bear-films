@@ -64,32 +64,29 @@
     padding: 1rem;
     margin-top: 1rem;
     box-shadow: $box-shadow;
+    display: flex;
 
-    div:first-of-type {
-      h2 {
-        text-align: left;
-        &::after {
-          @include gradient-underline($green_olive, $white);
-        }
-      }
+    div {
+      flex-basis: 66%;
     }
-    div:nth-of-type(2) {
-      h2::after {
-        @include gradient-underline($white, $green_olive);
+
+    h2 {
+      text-align: left;
+      &::after {
+        @include gradient-underline($green_olive, $white);
+      }
+      &:nth-of-type(2) {
+        text-align: right;
+        &::after {
+          @include gradient-underline($white, $green_olive);
+        }
       }
     }
 
     img {
-      width: $img-width;
-      height: auto;
-    }
-    img.rotate-90 {
-      height: $img-width;
+      height: 20rem;
       width: auto;
-    }
-
-    .center {
-      text-align: center;
+      margin: auto;
     }
   }
 
