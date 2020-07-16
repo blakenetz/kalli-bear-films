@@ -26,6 +26,13 @@ function About(props) {
       </article>
 
       <article class="your-story">
+        <div class="center">
+          <img
+            src="assets/flairs/watercolor-1.png"
+            alt="olive leaf"
+            class="rotate-90"
+          />
+        </div>
         <div>
           <h2>Tell Your story.</h2>
           <p>
@@ -33,6 +40,13 @@ function About(props) {
             life:
           </p>
           <p>Who to spend the rest of your life with.</p>
+        </div>
+        <div class="center">
+          <img
+            src="assets/flairs/watercolor-2.png"
+            alt="olive leaf"
+            class="rotate-90"
+          />
         </div>
         <div>
           <h2>Why video? Aren’t photos enough?</h2>
@@ -43,6 +57,9 @@ function About(props) {
             your great-great-grandchildren will be able to watch a video of
             their great-great-grandparents having the time of their life.
           </p>
+        </div>
+        <div class="center">
+          <img src="assets/flairs/watercolor-3.png" alt="olive leaf" />
         </div>
       </article>
     </section>

@@ -1,10 +1,15 @@
 .about {
+  $img-width: 9rem;
+
   position: relative;
-  max-width: $max-width;
   margin: 0 auto;
+  background-image: url("../assets/flairs/olive-2.png");
+  background-position: right;
+  padding-bottom: 2rem;
 
   article {
-    margin-bottom: 1rem;
+    max-width: $max-width;
+    margin: auto;
   }
 
   h2 {
@@ -13,7 +18,7 @@
     position: relative;
     padding-bottom: 0.75em;
     &::after {
-      @include gradient-underline($white, $pink_blush);
+      @include gradient-underline($white, $green_olive);
     }
   }
 
@@ -47,42 +52,44 @@
       background: $white;
       width: 160%;
       left: -60%;
-      margin-top: 100%;
+      margin-top: 93%;
       padding: 1em;
       padding-bottom: 2em;
+      box-shadow: $box-shadow;
     }
   }
 
   .your-story {
-    & > * {
-      padding: 1em;
-      width: 80%;
-      margin-top: -2em;
-      position: relative;
-      z-index: 5;
-    }
+    background: $green_light_2;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: $box-shadow;
+
     div:first-of-type {
-      background-color: rgba($pink_blush, 0.3);
-      padding-bottom: 2em;
-      margin-left: 1em;
       h2 {
         text-align: left;
         &::after {
-          @include gradient-underline(
-            $blue_light,
-            $white,
-            rgba($pink_blush, 0)
-          );
+          @include gradient-underline($green_olive, $white);
         }
       }
     }
     div:nth-of-type(2) {
-      background-color: rgba($tangerine, 0.3);
-      margin-right: 1em;
-      margin-left: auto;
       h2::after {
-        @include gradient-underline(rgba($tangerine, 0), $white, $blue_light);
+        @include gradient-underline($white, $green_olive);
       }
+    }
+
+    img {
+      width: $img-width;
+      height: auto;
+    }
+    img.rotate-90 {
+      height: $img-width;
+      width: auto;
+    }
+
+    .center {
+      text-align: center;
     }
   }
 
