@@ -54,6 +54,7 @@
       z-index: 5;
       figure {
         align-items: flex-end;
+        flex-direction: row-reverse;
       }
       figcaption {
         margin-right: -8rem;

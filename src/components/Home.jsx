@@ -1,29 +1,9 @@
-import { useEffect } from "preact/hooks";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import { words } from "lodash";
 
-const animation = {
-  x: "0vw",
-  transition: { duration: 1.5 },
-};
+import AnimatedImage from "./AnimatedImage";
 
 function Home() {
-  const [topRef, topInView] = useInView();
-  const [bottomRef, bottomInView] = useInView();
-  const topControls = useAnimation();
-  const bottomControls = useAnimation();
-
-  useEffect(() => {
-    console.log(topInView, bottomInView);
-    if (topInView) {
-      topControls.start(animation);
-    }
-    if (bottomInView) {
-      bottomControls.start(animation);
-    }
-  }, [topControls, bottomControls, topInView, bottomInView]);
-
   return (
     <section class="home">
       <div class="background">
@@ -56,41 +36,22 @@ function Home() {
         </h1>
       </article>
 
-      <article class="image" ref={topRef}>
-        <figure>
-          <motion.div initial={{ x: "-100vw" }} animate={topControls}>
-            <img
-              src="/assets/images/black-and-white-dance.jpeg"
-              alt="Dancing couple"
-            />
-          </motion.div>
-          <figcaption>
-            <h2>
-              {words("Wedding and Elopement Videography").map(word => (
-                <span class="sr">{word}</span>
-              ))}
-            </h2>
-          </figcaption>
-        </figure>
-      </article>
+      <AnimatedImage
+        imageProps={{
+          src: "/assets/images/black-and-white-dance.jpeg",
+          alt: "Dancing couple",
+        }}
+        text="Wedding and Elopement Videography"
+      />
 
-      <article class="image reverse" ref={bottomRef}>
-        <figure>
-          <figcaption>
-            <h2>
-              {words("A Day To Remember").map(word => (
-                <span class="sr">{word}</span>
-              ))}
-            </h2>
-          </figcaption>
-          <motion.div initial={{ x: "100vw" }} animate={bottomControls}>
-            <img
-              src="/assets/images/unsplash/black-and-white-kiss.jpg"
-              alt="Kissing couple"
-            />
-          </motion.div>
-        </figure>
-      </article>
+      <AnimatedImage
+        imageProps={{
+          src: "/assets/images/unsplash/black-and-white-kiss.jpg",
+          alt: "Kissing couple",
+        }}
+        text="A Day To Remember"
+        reverse
+      />
     </section>
   );
 }
