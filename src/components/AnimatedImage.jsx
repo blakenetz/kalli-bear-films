@@ -13,7 +13,8 @@ function AnimatedImage(props) {
   useEffect(() => {
     if (inView) {
       imgControls.start({
-        x: "0vw",
+        x: 0,
+        opacity: 1,
         transition: { duration: 1.5 },
       });
 
@@ -28,19 +29,26 @@ function AnimatedImage(props) {
     <article class={classnames("image", { reverse: props.reverse })} ref={ref}>
       <figure>
         <motion.div
-          initial={{ x: props.reverse ? "100vw" : "-100vw" }}
+          initial={{
+            x: props.reverse ? 200 : -200,
+            opacity: 0,
+          }}
           animate={imgControls}
         >
           <img {...props.imageProps} />
         </motion.div>
         <figcaption>
-          <h2>
+          <motion.h2
+            animate={{
+              transition: { staggerChildren: 0.5 },
+            }}
+          >
             {words(props.text).map(word => (
               <motion.span initial={{ opacity: 0 }} animate={textControls}>
                 {word}
               </motion.span>
             ))}
-          </h2>
+          </motion.h2>
         </figcaption>
       </figure>
     </article>

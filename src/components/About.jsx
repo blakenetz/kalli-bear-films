@@ -1,4 +1,7 @@
-function About(props) {
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+function About() {
   return (
     <section class="about">
       <article>

@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from "preact/hooks";
 import YouTube from "react-youtube";
 import classnames from "classnames";
+import anime from "animejs";
 import { debounce } from "lodash";
 
 import { ErrorSVG, PlaySVG } from "./svg/VideoControls";
@@ -16,16 +17,16 @@ const videos = [
   { id: "UGOxgwgplDo", couple: "York and Amanda" },
 ];
 
-// const fadeInOpts = {
-//   targets: ".show .anime-target",
-//   opacity: [1, 0],
-//   easing: "easeOutExpo",
-//   duration: 600,
-// };
-// const fadeOutOpts = {
-//   targets: ".ready .anime-target",
-//   opacity: [0, 1],
-// };
+const fadeInOpts = {
+  targets: ".show .anime-target",
+  opacity: [1, 0],
+  easing: "easeOutExpo",
+  duration: 600,
+};
+const fadeOutOpts = {
+  targets: ".ready .anime-target",
+  opacity: [0, 1],
+};
 
 const getHeight = height => height - height * 0.265;
 
@@ -39,13 +40,13 @@ function Portfolio() {
   const [opts, setOpts] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    // anime({
-    //   targets: ".cell .video",
-    //   duration: 1000,
-    //   delay: anime.stagger(100, { start: 200 }),
-    //   translateY: ["-100%", 0],
-    //   elasticity: 200,
-    // });
+    anime({
+      targets: ".cell .video",
+      duration: 1000,
+      delay: anime.stagger(100, { start: 200 }),
+      translateY: ["-100%", 0],
+      elasticity: 200,
+    });
 
     const onResize = debounce(() => {
       const videoEl = document.querySelector(".show");
@@ -64,10 +65,10 @@ function Portfolio() {
   }, []);
 
   useEffect(() => {
-    // anime
-    //   .timeline()
-    //   .add(fadeOutOpts)
-    //   .add({ ...fadeInOpts, complete: () => setReadyVideo(showVideo) });
+    anime
+      .timeline()
+      .add(fadeOutOpts)
+      .add({ ...fadeInOpts, complete: () => setReadyVideo(showVideo) });
   }, [showVideo]);
 
   const handleClick = useCallback(

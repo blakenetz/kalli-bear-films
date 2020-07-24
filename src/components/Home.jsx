@@ -27,8 +27,12 @@ function Home() {
           {words("Kalli Bear Films").map((word, i) => (
             <motion.span
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: i * 0.3, ease: "easeIn" }}
+              animate={{
+                opacity: 1,
+                transition: {
+                  delay: i * 0.15,
+                },
+              }}
             >
               {word}
             </motion.span>
