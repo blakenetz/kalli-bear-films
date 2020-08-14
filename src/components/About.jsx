@@ -1,7 +1,24 @@
+import { useEffect } from "preact/hooks";
 import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { usenIView, useInView } from "react-intersection-observer";
 
 function About() {
+  const [ref, inView] = useInView();
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        y: 0,
+        transition: {
+          duration: 1,
+        },
+      });
+    }
+  }, [inView, controls]);
+
   return (
     <section class="about">
       <article>
@@ -28,7 +45,12 @@ function About() {
         </figure>
       </article>
 
-      <article class="your-story">
+      <motion.article
+        class="your-story"
+        ref={ref}
+        initial={{ opacity: 0, x: 400, y: 100 }}
+        animate={controls}
+      >
         <img src="assets/flairs/watercolor-2.png" alt="olive leaf" />
         <div>
           <h2>Tell Your story.</h2>
@@ -47,7 +69,7 @@ function About() {
             their great-great-grandparents having the time of their life.
           </p>
         </div>
-      </article>
+      </motion.article>
     </section>
   );
 }
