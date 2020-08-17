@@ -259,7 +259,8 @@ function Packages() {
 
       <section class="packages">
         <>
-          <section class="offering">
+          <section class="tiers">
+            <h2>Pick a package</h2>
             <Slider {...sliderSettings}>
               {tiers.map(tier => (
                 <>

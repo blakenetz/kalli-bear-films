@@ -1,7 +1,8 @@
 .packages {
   @mixin cell {
     padding: 1em;
-    background: rgba($blue_dark, 0.9);
+    margin: 0 1em;
+    background: rgba($green, 0.9);
     color: $white;
     position: relative;
     text-align: center;
@@ -11,43 +12,28 @@
       padding-bottom: 1em;
 
       &::after {
-        @include gradient-underline($blue_dark, $white);
+        @include gradient-underline($green_light, $white);
       }
     }
   }
 
-  .offering {
-    margin: 2.5em 5em;
-    margin-right: 0;
+  background-image: url("../assets/flairs/olive-4.png");
+  background-position-y: -20vh;
 
-    // .cell {
-    //   padding: 2em 0;
-
-    //   &:nth-of-type(2) {
-    //     background: $white;
-    //     margin: 0;
-    //     color: $black;
-    //     box-shadow: $box-shadow;
-    //     z-index: 5;
-    //     h3 {
-    //       position: relative;
-    //       padding-bottom: 1em;
-
-    //       &::after {
-    //         @include gradient-underline($white, $blue_dark);
-    //       }
-    //     }
-    //   }
-    // }
+  & > section {
+    margin-top: 4em;
   }
 
-  .negative-top {
-    margin-top: -4em;
+  .tiers {
+    margin-left: 33vw;
+  }
+
+  .slick-slide div {
+    @include cell;
   }
 
   h2 {
-    position: relative;
-    text-align: center;
+    margin: 1rem 2rem;
   }
 
   p {
@@ -187,7 +173,8 @@
 
     article {
       @include cell;
-      background: rgba($blue_dark, 0.8);
+      background: rgba($green_light, 0.8);
+      color: $black;
 
       h3::after {
         @include gradient-underline($tangerine, $white, $blue_light);
