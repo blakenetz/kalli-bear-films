@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useRef, useCallback } from "preact/hooks";
-import PropTypes from "prop-types";
-import { map, reduce, forIn, flatMap, startCase } from "lodash";
+import { reduce, forIn, map, startCase } from "lodash";
+import Slider from "react-slick";
 import classnames from "classnames";
 
 import {
@@ -17,7 +17,14 @@ import {
   DollarSign,
 } from "./svg/PackageControls";
 
-const WeddingOfferings = "Wedding Offerings";
+const sliderSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 2,
+  className: "cell-wrapper",
+  arrows: false,
+};
 
 // all data is stored here
 const { baseCardValues, values } = reduce(
@@ -89,79 +96,58 @@ const { baseCardValues, values } = reduce(
   { baseCardValues: {}, values: {} }
 );
 
-// data is restructured for cards and derived from `baseCardValues`
-const packages = [
+const tiers = [
   {
-    title: WeddingOfferings,
-    imgSrc: "/assets/images/unsplash/night-couple-party.jpg",
-    imgAlt: "Newly weds at their after party",
-    cards: [
-      {
-        ...baseCardValues,
-        name: "Tier 1",
-        price: 1095,
-        description:
-          "The Tier 1 cinematography package is a perfect foundation to capture your special day. This package will provide you with 1 cinematographer for up to 5 hours capturing the ceremony and reception professionally and creatively. The final step is creating a ceremony edit using multiple camera angles.",
-        hoursOfCoverage: 5,
-        ceremonyFilm: true,
-      },
-      {
-        ...baseCardValues,
-        name: "Tier 2",
-        price: 1800,
-        description:
-          "The Tier 2 cinematography package is a great all around package. This package will provide you with 1 cinematographer for up to 7 hours capturing the ceremony and reception professionally and creatively. The final step is creating a gorgeous cinematic short film highlighting all the best moments from your wedding with multiple camera angles. This includes ceremony, reception, speeches.",
-        hoursOfCoverage: 7,
-        cinematicShort: true,
-      },
-      {
-        ...baseCardValues,
-        name: "Tier 3",
-        price: 2800,
-        description:
-          "The Tier 3 cinematography package is the perfect all around package. This package includes all items from Tier 1 and 2 in addition to 2 cinematographers for up to 9 hours capturing the entire day, professionally and creatively. We will capture the entire day, from the moment you start getting ready to the moment you leave the reception. The final step is creating a gorgeous cinematic short film in addition to a feature film.",
-        hoursOfCoverage: 9,
-        cinematicShort: true,
-        cinematicFeature: true,
-        rawContent: true,
-      },
-    ],
+    ...baseCardValues,
+    name: "Tier 1",
+    price: 1095,
+    description:
+      "The Tier 1 cinematography package is a perfect foundation to capture your special day. This package will provide you with 1 cinematographer for up to 5 hours capturing the ceremony and reception professionally and creatively. The final step is creating a ceremony edit using multiple camera angles.",
+    hoursOfCoverage: 5,
+    ceremonyFilm: true,
   },
   {
-    title: "Additional Services",
-    imgSrc: "/assets/images/unsplash/bouquet.jpg",
-    imgAlt: "A close up of a bouquet",
-    cards: [
-      {
-        ...baseCardValues,
-        name: "Elopement",
-        price: 1200,
-        description:
-          "For those that are looking forward to their very special elopement, we support you! Elopements are great because their small, intimate, and you can really be adventurous with your location. It allows us to completely tailor the video and audio to you as a couple. This package includes 1 cinematographer for up to 5 hours and finally, we will create a gorgeous cinematic short film telling your elopement story.",
-        hoursOfCoverage: 5,
-        cinematicShort: true,
-      },
-      {
-        ...baseCardValues,
-        name: "Save The Date",
-        price: 950,
-        description:
-          "Looking for a special and unique way to send out your save the dates. Why not include a cinematic short film to show your friends and family how excited you are to have them join you on your special day?! It gives an old tradition a fun twist and  fits perfectly for when you schedule that engagement shoot. This package includes 1 cinematographer for up to 4 hours and finally, we will create a gorgeous cinematic short film. We’ve seen this video played out at a reception and had great results. Nothing like another good tear jerker before getting on the dance floor!",
-        hoursOfCoverage: 4,
-        cinematicShort: true,
-      },
-    ],
+    ...baseCardValues,
+    name: "Tier 2",
+    price: 1800,
+    description:
+      "The Tier 2 cinematography package is a great all around package. This package will provide you with 1 cinematographer for up to 7 hours capturing the ceremony and reception professionally and creatively. The final step is creating a gorgeous cinematic short film highlighting all the best moments from your wedding with multiple camera angles. This includes ceremony, reception, speeches.",
+    hoursOfCoverage: 7,
+    cinematicShort: true,
+  },
+  {
+    ...baseCardValues,
+    name: "Tier 3",
+    price: 2800,
+    description:
+      "The Tier 3 cinematography package is the perfect all around package. This package includes all items from Tier 1 and 2 in addition to 2 cinematographers for up to 9 hours capturing the entire day, professionally and creatively. We will capture the entire day, from the moment you start getting ready to the moment you leave the reception. The final step is creating a gorgeous cinematic short film in addition to a feature film.",
+    hoursOfCoverage: 9,
+    cinematicShort: true,
+    cinematicFeature: true,
+    rawContent: true,
   },
 ];
 
-// move tier 3 to middle spot
-const sortedPackages = packages.map(p => {
-  if (p.title === WeddingOfferings) {
-    p.cards.splice(1, 0, p.cards.splice(2, 1)[0]);
-  }
-
-  return p;
-});
+const additionalServices = [
+  {
+    ...baseCardValues,
+    name: "Elopement",
+    price: 1200,
+    description:
+      "For those that are looking forward to their very special elopement, we support you! Elopements are great because their small, intimate, and you can really be adventurous with your location. It allows us to completely tailor the video and audio to you as a couple. This package includes 1 cinematographer for up to 5 hours and finally, we will create a gorgeous cinematic short film telling your elopement story.",
+    hoursOfCoverage: 5,
+    cinematicShort: true,
+  },
+  {
+    ...baseCardValues,
+    name: "Save The Date",
+    price: 950,
+    description:
+      "Looking for a special and unique way to send out your save the dates. Why not include a cinematic short film to show your friends and family how excited you are to have them join you on your special day?! It gives an old tradition a fun twist and  fits perfectly for when you schedule that engagement shoot. This package includes 1 cinematographer for up to 4 hours and finally, we will create a gorgeous cinematic short film. We’ve seen this video played out at a reception and had great results. Nothing like another good tear jerker before getting on the dance floor!",
+    hoursOfCoverage: 4,
+    cinematicShort: true,
+  },
+];
 
 const addOns = [
   {
@@ -212,7 +198,7 @@ const addOns = [
 
 // reformat data for table
 const table = reduce(
-  flatMap(packages, p => p.cards),
+  [...tiers, ...additionalServices],
   (acc, card, i) => {
     forIn(card, (val, key) => {
       if (key === "name") {
@@ -234,21 +220,6 @@ const table = reduce(
     body: {},
   }
 );
-
-function Figure(props) {
-  return (
-    <figure>
-      <div class="img-wrapper">
-        <img src={props.imgSrc} alt={props.imgAlt} />
-      </div>
-      <figcaption>
-        <div class="text-wrapper">
-          <h2>{props.title}</h2>
-        </div>
-      </figcaption>
-    </figure>
-  );
-}
 
 function Packages() {
   const hihatRef = useRef();
@@ -287,47 +258,23 @@ function Packages() {
       <audio preload="auto" src="/samples/kick.wav" ref={kickRef} />
 
       <section class="packages">
-        {sortedPackages.map(pack => (
-          <>
-            <Figure {...pack} />
-            <section class="offering negative-top">
-              {pack.cards.map(card => (
-                <article class="cell">
+        <>
+          <section class="offering">
+            <Slider {...sliderSettings}>
+              {tiers.map(tier => (
+                <>
                   <h3>
-                    {card.name} Package: ${card.price}
+                    {tier.name} Package: ${tier.price}
                   </h3>
-                  <p>{card.description}</p>
-                  <ul>
-                    {map(card, (val, key) =>
-                      !!val && values[key] && values[key].listContent ? (
-                        <li>
-                          <span
-                            onFocus={handleSound(key)}
-                            onMouseEnter={handleSound(key)}
-                            tabIndex={1}
-                          >
-                            {h(values[key].icon)}
-                          </span>
-                          <span>
-                            {val} {values[key].listContent}
-                          </span>
-                        </li>
-                      ) : null
-                    )}
-                  </ul>
-                </article>
+                  <p>{tier.description}</p>
+                </>
               ))}
-            </section>
-          </>
-        ))}
+            </Slider>
+          </section>
+        </>
 
-        <section class="add-ons negative-top">
-          <Figure
-            imgSrc="/assets/images/unsplash/cropped-bride.jpg"
-            imgAlt="Image of a bride cropped by her future husband"
-            title="Add Ons"
-          />
-          <div class="grid negative-top">
+        <section class="add-ons">
+          <div class="grid">
             {addOns.map(item => (
               <article>
                 <h3>
@@ -381,11 +328,5 @@ function Packages() {
     </>
   );
 }
-
-Figure.propTypes = {
-  imgSrc: PropTypes.string.isRequired,
-  imgAlt: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default Packages;

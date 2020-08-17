@@ -50,8 +50,10 @@
     "preact-router": "^3.2.1",
     "prop-types": "^15.7.2",
     "react-intersection-observer": "^8.26.2",
+    "react-slick": "^0.27.8",
     "react-youtube": "^7.9.0",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "slick-carousel": "^1.8.1"
   },
   "jest": {
     "preset": "jest-preset-preact",
