@@ -22,7 +22,6 @@ const sliderSettings = {
   infinite: true,
   speed: 500,
   slidesToShow: 2,
-  className: "cell-wrapper",
   arrows: false,
 };
 
@@ -275,9 +274,9 @@ function Packages() {
         </>
 
         <section class="add-ons">
-          <div class="grid">
+          <Slider {...sliderSettings} rows={2}>
             {addOns.map(item => (
-              <article>
+              <>
                 <h3>
                   {item.name}
                   {Boolean(item.note) && <sup>*</sup>}
@@ -290,9 +289,9 @@ function Packages() {
                     <em>{item.note}</em>
                   </p>
                 )}
-              </article>
+              </>
             ))}
-          </div>
+          </Slider>
         </section>
 
         <section class="table-wrapper">

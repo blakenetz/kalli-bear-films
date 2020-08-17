@@ -32,6 +32,20 @@
     @include cell;
   }
 
+  .add-ons {
+    margin-right: 33vw;
+
+    .slick-slide div {
+      background: rgba($green_light, 0.8);
+      color: $black;
+      margin: 1em;
+
+      h3::after {
+        @include gradient-underline($white, $green);
+      }
+    }
+  }
+
   h2 {
     margin: 1rem 2rem;
   }
@@ -40,78 +54,12 @@
     line-height: 1.5em;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  li {
-    margin: 1em 0;
-    display: inline-flex;
-    align-items: center;
-    width: 100%;
-    text-align: left;
-  }
-
-  li span:focus {
-    outline: none;
-  }
-
-  li svg,
   td svg {
     width: 24px;
     height: 24px;
     margin-right: 0.5em;
     &:hover {
       transform: rotate(15deg);
-    }
-  }
-
-  figure {
-    margin: 0;
-    display: flex;
-    margin-bottom: 1em;
-    max-width: $max-width;
-    margin: 0 auto;
-
-    &:nth-of-type(2) {
-      margin-top: -5em;
-    }
-  }
-
-  .img-wrapper {
-    width: 75%;
-    img {
-      width: 100%;
-      height: auto;
-      border: 0;
-      position: static;
-    }
-  }
-
-  figcaption {
-    z-index: 5;
-    width: 25%;
-
-    .text-wrapper {
-      max-width: initial;
-      background: $white;
-      padding: 1em;
-      padding-bottom: 2em;
-      position: relative;
-      width: 160%;
-      left: -60%;
-      overflow: visible;
-      margin-top: 80%;
-      box-shadow: $box-shadow;
-    }
-
-    h2 {
-      text-align: left;
-      padding-bottom: 1em;
-      &::after {
-        @include gradient-underline($pink_blush, $white);
-      }
     }
   }
 
@@ -163,40 +111,6 @@
     }
   }
 
-  .add-ons {
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
-      grid-column-gap: 1em;
-      grid-row-gap: 1em;
-    }
-
-    article {
-      @include cell;
-      background: rgba($green_light, 0.8);
-      color: $black;
-
-      h3::after {
-        @include gradient-underline($tangerine, $white, $blue_light);
-      }
-    }
-  }
-
   @media screen and (max-width: $breakpoint-lg) {
-    .offering {
-      // .cell {
-      //   flex-basis: 100%;
-      //   margin: 0 1em;
-      // }
-
-      &:nth-of-type(2) {
-        .cell:nth-of-type(2) {
-          color: $black;
-          background: $white;
-          box-shadow: $box-shadow;
-          margin: 0;
-        }
-      }
-    }
   }
 }
