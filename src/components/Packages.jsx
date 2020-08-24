@@ -1,8 +1,8 @@
 import { h } from "preact";
-import { useRef, useCallback } from "preact/hooks";
-import { reduce, forIn, map, startCase } from "lodash";
-import Slider from "react-slick";
+import { useRef, useCallback, useState } from "preact/hooks";
+import { reduce, forIn, map, startCase, find, findIndex } from "lodash";
 import classnames from "classnames";
+import PropTypes from "prop-types";
 
 import {
   Clock,
@@ -16,14 +16,7 @@ import {
   Check,
   DollarSign,
 } from "./svg/PackageControls";
-
-const sliderSettings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 2,
-  arrows: false,
-};
+import Arrow from "./svg/Arrow";
 
 // all data is stored here
 const { baseCardValues, values } = reduce(
@@ -220,10 +213,60 @@ const table = reduce(
   }
 );
 
+function Tier({
+  selected,
+  handleClick,
+  name,
+  price,
+  description,
+  ...listItems
+}) {
+  return (
+    <article class={classnames({ selected })} onClick={handleClick}>
+      <h3>
+        {name} Package: ${price}
+      </h3>
+      <p>{description}</p>
+
+      {selected && (
+        <ul>
+          {map(listItems, (val, key) =>
+            !!val && values[key] && values[key].listContent ? (
+              <li>
+                <span
+                  // onFocus={handleSound(key)}
+                  // onMouseEnter={handleSound(key)}
+                  tabIndex={1}
+                >
+                  {h(values[key].icon)}
+                </span>
+                <span>
+                  {val} {values[key].listContent}
+                </span>
+              </li>
+            ) : null
+          )}
+        </ul>
+      )}
+    </article>
+  );
+}
+Tier.propTypes = {
+  selected: PropTypes.bool,
+  handleClick: PropTypes.func,
+};
+Tier.defaultProps = {
+  selected: false,
+  handleClick: () => null,
+};
+
 function Packages() {
   const hihatRef = useRef();
   const clapRef = useRef();
   const kickRef = useRef();
+
+  const [selectedTier, setSelectedTier] = useState(0);
+  const [selectedAddOn, setSelectedAddOn] = useState(0);
 
   const handleSound = useCallback(
     key => () => {
@@ -250,6 +293,29 @@ function Packages() {
     []
   );
 
+  const handleTierClick = useCallback(
+    (dir, name) => {
+      let nextTier = 0;
+      const lastIndex = tiers.length - 1;
+
+      // set tier by index
+      if (name) {
+        nextTier = findIndex(tiers, { name });
+        setSelectedTier(nextTier);
+        return;
+      }
+      // set tier by direction
+      if (dir === "previous") {
+        nextTier = selectedTier === 0 ? lastIndex : selectedTier - 1;
+      } else {
+        nextTier = selectedTier === lastIndex ? 0 : selectedTier + 1;
+      }
+      console.log("next", nextTier);
+      setSelectedTier(nextTier);
+    },
+    [selectedTier]
+  );
+
   return (
     <>
       <audio preload="auto" src="/samples/clap.wav" ref={clapRef} />
@@ -260,38 +326,58 @@ function Packages() {
         <>
           <section class="tiers">
             <h2>Pick a package</h2>
-            <Slider {...sliderSettings}>
-              {tiers.map(tier => (
-                <>
-                  <h3>
-                    {tier.name} Package: ${tier.price}
-                  </h3>
-                  <p>{tier.description}</p>
-                </>
-              ))}
-            </Slider>
+            <div class="wrapper">
+              <Tier
+                {...find(tiers, (_val, i) => i === selectedTier)}
+                selected
+              />
+
+              <div class="next-tiers">
+                <div class="buttons">
+                  {["previous", "next"].map(direction => (
+                    <button
+                      class={`button-${direction} default no-focus`}
+                      key={direction}
+                      onClick={() => handleTierClick(direction)}
+                      title={`Select ${direction} tier`}
+                    >
+                      <span class="button-wrapper">
+                        <Arrow direction={direction} />
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                {tiers.map((tier, i) =>
+                  i === selectedTier ? null : (
+                    <Tier
+                      {...tier}
+                      key={tier.name}
+                      handleClick={() => handleTierClick(null, tier.name)}
+                    />
+                  )
+                )}
+              </div>
+            </div>
           </section>
         </>
 
         <section class="add-ons">
-          <Slider {...sliderSettings} rows={2}>
-            {addOns.map(item => (
-              <>
-                <h3>
-                  {item.name}
-                  {Boolean(item.note) && <sup>*</sup>}
-                </h3>
-                <p>{item.price}</p>
-                <p>{item.description}</p>
-                {Boolean(item.note) && (
-                  <p>
-                    <sup>*</sup>
-                    <em>{item.note}</em>
-                  </p>
-                )}
-              </>
-            ))}
-          </Slider>
+          {addOns.map((item, i) => (
+            <article class={classnames({ selected: selectedAddOn === i })}>
+              <h3>
+                {item.name}
+                {Boolean(item.note) && <sup>*</sup>}
+              </h3>
+              <p>{item.price}</p>
+              <p>{item.description}</p>
+              {Boolean(item.note) && (
+                <p>
+                  <sup>*</sup>
+                  <em>{item.note}</em>
+                </p>
+              )}
+            </article>
+          ))}
         </section>
 
         <section class="table-wrapper">

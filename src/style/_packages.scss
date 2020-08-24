@@ -2,7 +2,7 @@
   @mixin cell {
     padding: 1em;
     margin: 0 1em;
-    background: rgba($green, 0.9);
+    background: rgba($green_light, 0.9);
     color: $white;
     position: relative;
     text-align: center;
@@ -25,15 +25,46 @@
   }
 
   .tiers {
-    margin-left: 33vw;
-  }
+    margin: 1em;
+    margin-top: 3em;
+    margin-left: 15vw;
+    background: $white;
+    box-shadow: $box-shadow;
+    padding: 0.25em 1em;
 
-  .slick-slide div {
-    @include cell;
+    .wrapper {
+      display: flex;
+    }
+
+    .next-tiers {
+      flex-basis: 40%;
+    }
+
+    article {
+      padding: 1em;
+      background: rgba($green_light, 0.9);
+      color: $white;
+      text-align: center;
+      border: 1px solid $black;
+
+      &.selected {
+        background: rgba($green, 0.9);
+        flex-basis: 60%;
+        border: none;
+      }
+      h3 {
+        position: relative;
+        padding-bottom: 1em;
+
+        &::after {
+          @include gradient-underline($green_light, $white);
+        }
+      }
+    }
   }
 
   .add-ons {
-    margin-right: 33vw;
+    margin-right: 15vw;
 
     .slick-slide div {
       background: rgba($green_light, 0.8);
@@ -46,14 +77,93 @@
     }
   }
 
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    border: none;
+    background: 0 0;
+    padding: 0;
+    transform-origin: right center;
+    transform: translate3d(0, 0, 0);
+    width: 1.942vw;
+    height: 1.142vw;
+    overflow: hidden;
+    margin: 1em;
+    span {
+      transform: translate(0, 0);
+      transition: transform 0.9s 0.6s cubic-bezier(0.39, 0.575, 0.28, 0.995);
+      display: block;
+    }
+
+    &:hover {
+      transform: scale3d(1.2, 1, 1);
+      cursor: pointer;
+    }
+
+    span::before {
+      position: absolute;
+      top: 50%;
+      height: 2px;
+      background: #161616;
+      left: 1px;
+      right: 1px;
+      content: "";
+      margin-top: -1px;
+    }
+
+    svg {
+      width: 0.514vw;
+      width: 7px;
+      fill: #161616;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.button-next {
+      svg {
+        right: 0;
+      }
+    }
+
+    &.button-previous {
+      svg {
+        left: 0;
+      }
+    }
+  }
+
   h2 {
-    margin: 1rem 2rem;
+    margin: 0 2rem;
+    font-size: 3.5rem;
   }
 
   p {
     line-height: 1.5em;
   }
 
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin: 1em 0;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+  }
+
+  li span:focus {
+    outline: none;
+  }
+
+  li svg,
   td svg {
     width: 24px;
     height: 24px;
@@ -109,8 +219,5 @@
         width: auto;
       }
     }
-  }
-
-  @media screen and (max-width: $breakpoint-lg) {
   }
 }
