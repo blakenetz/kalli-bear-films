@@ -1,4 +1,24 @@
-function About(props) {
+import { useEffect } from "preact/hooks";
+import { motion, useAnimation } from "framer-motion";
+import { usenIView, useInView } from "react-intersection-observer";
+
+function About() {
+  const [ref, inView] = useInView();
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        y: 0,
+        transition: {
+          duration: 1,
+        },
+      });
+    }
+  }, [inView, controls]);
+
   return (
     <section class="about">
       <article>
@@ -25,7 +45,13 @@ function About(props) {
         </figure>
       </article>
 
-      <article class="your-story">
+      <motion.article
+        class="your-story"
+        ref={ref}
+        initial={{ opacity: 0, x: 400, y: 100 }}
+        animate={controls}
+      >
+        <img src="assets/flairs/watercolor-2.png" alt="olive leaf" />
         <div>
           <h2>Tell Your story.</h2>
           <p>
@@ -33,8 +59,7 @@ function About(props) {
             life:
           </p>
           <p>Who to spend the rest of your life with.</p>
-        </div>
-        <div>
+
           <h2>Why video? Aren’t photos enough?</h2>
           <p>
             Photos are wonderful and they are a must have however, a video
@@ -44,7 +69,7 @@ function About(props) {
             their great-great-grandparents having the time of their life.
           </p>
         </div>
-      </article>
+      </motion.article>
     </section>
   );
 }

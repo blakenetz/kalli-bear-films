@@ -111,43 +111,45 @@ function Portfolio() {
 
   return (
     <section class="portfolio">
-      {videos.map(({ id, couple }) => {
-        const isError = errorVideos.indexOf(id) !== -1;
+      <div class="grid">
+        {videos.map(({ id, couple }) => {
+          const isError = errorVideos.indexOf(id) !== -1;
 
-        return (
-          <article class="cell">
-            <figure
-              class={classnames("video", {
-                error: isError,
-                show: showVideo === id,
-                ready: readyVideo === id,
-              })}
-              onClick={isError ? null : handleClick.bind(null, id)}
-            >
-              <img
-                src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
-                alt={`Wedding video for ${couple}`}
-                class="anime-target"
-              />
-              {isError ? <ErrorSVG /> : <PlaySVG class="anime-target" />}
-            </figure>
-
-            {id === showVideo && (
-              <YouTube
-                videoId={id}
-                id={id}
-                containerClassName={classnames("video-iframe", {
+          return (
+            <article class="cell">
+              <figure
+                class={classnames("video", {
+                  error: isError,
+                  show: showVideo === id,
                   ready: readyVideo === id,
                 })}
-                opts={opts}
-                onError={handleError.bind(null, id)}
-                onReady={handleReady}
-                onEnd={handleEnd.bind(null, id)}
-              />
-            )}
-          </article>
-        );
-      })}
+                onClick={isError ? null : handleClick.bind(null, id)}
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
+                  alt={`Wedding video for ${couple}`}
+                  class="anime-target"
+                />
+                {isError ? <ErrorSVG /> : <PlaySVG class="anime-target" />}
+              </figure>
+
+              {id === showVideo && (
+                <YouTube
+                  videoId={id}
+                  id={id}
+                  containerClassName={classnames("video-iframe", {
+                    ready: readyVideo === id,
+                  })}
+                  opts={opts}
+                  onError={handleError.bind(null, id)}
+                  onReady={handleReady}
+                  onEnd={handleEnd.bind(null, id)}
+                />
+              )}
+            </article>
+          );
+        })}
+      </div>
     </section>
   );
 }

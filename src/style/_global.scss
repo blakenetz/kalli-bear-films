@@ -49,7 +49,7 @@ main {
   }
 }
 
-button,
+button:not(.default),
 [role="button"] {
   text-transform: uppercase;
   padding: 1rem;
@@ -88,6 +88,15 @@ button,
   }
 }
 
+a:focus,
+button:focus {
+  outline-color: $blush;
+}
+
+.no-focus:focus {
+  outline: none;
+}
+
 a {
   text-decoration: none;
   color: $green_olive;
@@ -97,6 +106,9 @@ a {
   transform: scaleX(-1);
 }
 
-.sr {
-  visibility: hidden;
+.rotate-90 {
+  transform: rotate(90deg);
+}
+.rotate-45 {
+  transform: rotate(45deg);
 }
