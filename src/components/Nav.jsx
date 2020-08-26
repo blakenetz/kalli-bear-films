@@ -35,7 +35,9 @@ export default function Nav() {
         <div>
           {routes.map(({ path }) => (
             <Link href={`/${path}`}>
-              <button key={path}>{path}</button>
+              <button key={path} class="slide-button">
+                {path}
+              </button>
             </Link>
           ))}
         </div>

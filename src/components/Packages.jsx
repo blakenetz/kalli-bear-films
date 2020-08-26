@@ -3,6 +3,7 @@ import { useRef, useCallback, useState } from "preact/hooks";
 import { reduce, forIn, map, startCase, find, findIndex } from "lodash";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import Slider from "react-slick";
 
 import {
   Clock,
@@ -266,7 +267,6 @@ function Packages() {
   const kickRef = useRef();
 
   const [selectedTier, setSelectedTier] = useState(0);
-  const [selectedAddOn, setSelectedAddOn] = useState(0);
 
   const handleSound = useCallback(
     key => () => {
@@ -323,64 +323,64 @@ function Packages() {
       <audio preload="auto" src="/samples/kick.wav" ref={kickRef} />
 
       <section class="packages">
-        <>
-          <section class="tiers">
-            <h2>Pick a package</h2>
-            <div class="wrapper">
-              <Tier
-                {...find(tiers, (_val, i) => i === selectedTier)}
-                selected
-              />
+        <section class="tiers">
+          <h2>Pick your package</h2>
+          <div class="wrapper">
+            <Tier {...find(tiers, (_val, i) => i === selectedTier)} selected />
 
-              <div class="next-tiers">
-                <div class="buttons">
-                  {["previous", "next"].map(direction => (
-                    <button
-                      class={`button-${direction} default no-focus`}
-                      key={direction}
-                      onClick={() => handleTierClick(direction)}
-                      title={`Select ${direction} tier`}
-                    >
-                      <span class="button-wrapper">
-                        <Arrow direction={direction} />
-                      </span>
-                    </button>
-                  ))}
-                </div>
-                {tiers.map((tier, i) =>
-                  i === selectedTier ? null : (
-                    <Tier
-                      {...tier}
-                      key={tier.name}
-                      handleClick={() => handleTierClick(null, tier.name)}
-                    />
-                  )
-                )}
+            <div class="next-tiers">
+              <div class="buttons">
+                {["previous", "next"].map(direction => (
+                  <button
+                    class={`button-${direction} no-focus`}
+                    key={direction}
+                    onClick={() => handleTierClick(direction)}
+                    title={`Select ${direction} tier`}
+                  >
+                    <span class="button-wrapper">
+                      <Arrow direction={direction} />
+                    </span>
+                  </button>
+                ))}
               </div>
+              {tiers.map((tier, i) =>
+                i === selectedTier ? null : (
+                  <Tier
+                    {...tier}
+                    key={tier.name}
+                    handleClick={() => handleTierClick(null, tier.name)}
+                  />
+                )
+              )}
             </div>
-          </section>
-        </>
+          </div>
+        </section>
 
         <section class="add-ons">
-          {addOns.map((item, i) => (
-            <article class={classnames({ selected: selectedAddOn === i })}>
-              <h3>
-                {item.name}
-                {Boolean(item.note) && <sup>*</sup>}
-              </h3>
-              <p>{item.price}</p>
-              <p>{item.description}</p>
-              {Boolean(item.note) && (
-                <p>
-                  <sup>*</sup>
-                  <em>{item.note}</em>
-                </p>
-              )}
-            </article>
-          ))}
+          <h2>Select some add-ons</h2>
+
+          <Slider dots slidesToShow={3} slidesToScroll={3}>
+            {addOns.map(item => (
+              <article>
+                <h3>
+                  {item.name}
+                  {Boolean(item.note) && <sup>*</sup>}
+                </h3>
+                <p>{item.price}</p>
+                <p>{item.description}</p>
+                {Boolean(item.note) && (
+                  <p>
+                    <sup>*</sup>
+                    <em>{item.note}</em>
+                  </p>
+                )}
+              </article>
+            ))}
+          </Slider>
         </section>
 
         <section class="table-wrapper">
+          <h2>Compare</h2>
           <table>
             <thead>
               <tr>
