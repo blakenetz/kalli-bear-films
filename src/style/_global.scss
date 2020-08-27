@@ -96,6 +96,18 @@ button:focus {
   outline: none;
 }
 
+.icon-button {
+  border: none;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
 a {
   text-decoration: none;
   color: $green_olive;
