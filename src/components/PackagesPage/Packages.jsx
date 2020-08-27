@@ -107,7 +107,27 @@ function Packages() {
         <section class="add-ons">
           <h2>Select some add-ons</h2>
 
-          <Slider dots slidesToShow={3} slidesToScroll={3}>
+          <Slider
+            dots
+            slidesToShow={4}
+            slidesToScroll={3}
+            responsive={[
+              {
+                breakpoint: 1100,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 2,
+                },
+              },
+              {
+                breakpoint: 770,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                },
+              },
+            ]}
+          >
             {addOns.map(item => (
               <article>
                 <h3>

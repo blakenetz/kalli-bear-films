@@ -220,4 +220,14 @@
       }
     }
   }
+
+  @media screen and (max-width: $breakpoint-md) {
+    .tiers,
+    .add-ons,
+    .table-wrapper {
+      margin-left: 1em;
+      margin-right: 1em;
+      width: unset;
+    }
+  }
 }
