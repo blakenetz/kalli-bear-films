@@ -9,7 +9,7 @@
 		"start:production": "npm run -s serve",
 		"start:development": "npm run -s dev",
 		"build": "preact build --template src/template.html --no-prerender",
-		"build:gh": "GITHUB_PAGES=kalli-bear-films preact build && dot-json ./build/manifest.json start_url \"/kalli-bear-films/\"",
+		"build:gh": "GITHUB_PAGES=kalli-bear-films preact build --no-prerender && dot-json ./build/manifest.json start_url \"/kalli-bear-films/\"",
 		"serve": "preact build --no-prerender && sirv build --cors --single",
 		"dev": "preact watch --template src/template.html",
 		"lint": "eslint src",
