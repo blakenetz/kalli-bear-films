@@ -1,4 +1,7 @@
-node_modules
+gh-pages
+*.pub
+size-plugin.json
+/node_modules
 /build
 /*.log
 /.vscode
