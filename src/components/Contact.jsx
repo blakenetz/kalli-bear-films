@@ -145,7 +145,12 @@ function Contact() {
           );
         })}
         <div class="action">
-          <input type="submit" role="button" value="Submit" />
+          <input
+            type="submit"
+            role="button"
+            value="Submit"
+            class="slide-button"
+          />
         </div>
       </form>
     </section>

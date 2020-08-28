@@ -1,4 +1,9 @@
 .packages {
+  max-width: $breakpoint-xl;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 4rem;
+
   @mixin cell {
     padding: 1em;
     margin: 0 1em;
@@ -22,117 +27,90 @@
 
   & > section {
     margin-top: 4em;
-  }
-
-  .tiers {
-    margin: 1em;
-    margin-top: 3em;
-    margin-left: 15vw;
     background: $white;
     box-shadow: $box-shadow;
     padding: 0.25em 1em;
-
-    .wrapper {
-      display: flex;
+    &:nth-of-type(odd) {
+      margin-left: 15vw;
     }
-
-    .next-tiers {
-      flex-basis: 40%;
-    }
-
-    article {
-      padding: 1em;
-      background: rgba($green_light, 0.9);
-      color: $white;
-      text-align: center;
-      border: 1px solid $black;
-
-      &.selected {
-        background: rgba($green, 0.9);
-        flex-basis: 60%;
-        border: none;
-      }
-      h3 {
-        position: relative;
-        padding-bottom: 1em;
-
-        &::after {
-          @include gradient-underline($green_light, $white);
-        }
-      }
+    &:nth-of-type(even) {
+      margin-right: 15vw;
     }
   }
 
   .add-ons {
-    margin-right: 15vw;
+    // added space for buttons
+    padding-left: calc(1em + 25px);
+    padding-right: calc(1em + 25px);
+    // added space for dots
+    padding-bottom: calc(1em + 25px);
 
-    .slick-slide div {
-      background: rgba($green_light, 0.8);
+    .slick-arrow::before {
       color: $black;
-      margin: 1em;
+    }
 
-      h3::after {
-        @include gradient-underline($white, $green);
-      }
+    .slick-slide {
+      // background: rgba($green_light, 0.9);
+      padding: 0 1em;
     }
   }
 
   .buttons {
     display: flex;
     flex-direction: column;
-  }
 
-  button {
-    border: none;
-    background: 0 0;
-    padding: 0;
-    transform-origin: right center;
-    transform: translate3d(0, 0, 0);
-    width: 1.942vw;
-    height: 1.142vw;
-    overflow: hidden;
-    margin: 1em;
-    span {
-      transform: translate(0, 0);
-      transition: transform 0.9s 0.6s cubic-bezier(0.39, 0.575, 0.28, 0.995);
-      display: block;
-    }
-
-    &:hover {
-      transform: scale3d(1.2, 1, 1);
-      cursor: pointer;
-    }
-
-    span::before {
-      position: absolute;
-      top: 50%;
-      height: 2px;
-      background: #161616;
-      left: 1px;
-      right: 1px;
-      content: "";
-      margin-top: -1px;
-    }
-
-    svg {
-      width: 0.514vw;
-      width: 7px;
-      fill: #161616;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &.button-next {
-      svg {
-        right: 0;
+    button {
+      border: none;
+      background: 0 0;
+      padding: 0;
+      transform-origin: right center;
+      transform: translate3d(0, 0, 0);
+      max-width: 3rem;
+      height: 1rem;
+      overflow: hidden;
+      margin: 1em;
+      span {
+        transform: translate(0, 0);
+        transition: transform 0.9s 0.6s cubic-bezier(0.39, 0.575, 0.28, 0.995);
+        display: block;
       }
-    }
 
-    &.button-previous {
+      &:hover {
+        transform: scale3d(1.2, 1, 1);
+        cursor: pointer;
+      }
+
+      span::before {
+        position: absolute;
+        top: 50%;
+        height: 2px;
+        background: #161616;
+        left: 1px;
+        right: 1px;
+        content: "";
+        margin-top: -1px;
+      }
+
       svg {
-        left: 0;
+        width: 0.514vw;
+        width: 7px;
+        fill: #161616;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.button-next {
+        svg {
+          right: 0;
+        }
+      }
+
+      &.button-previous {
+        svg {
+          left: 0;
+        }
       }
     }
   }
@@ -174,13 +152,7 @@
   }
 
   .table-wrapper {
-    width: 100%;
-    margin: 2em auto;
-    background: $white;
-    box-shadow: $box-shadow;
-    padding: 1em;
     overflow-x: scroll;
-    max-width: $max-width;
   }
 
   table {
@@ -218,6 +190,55 @@
         height: 1rem;
         width: auto;
       }
+    }
+  }
+
+  .carousel {
+    display: flex;
+    .next-cards {
+      flex-basis: 40%;
+      justify-content: flex-end;
+      display: flex;
+      flex-direction: column;
+    }
+
+    article {
+      padding: 1em;
+      background: rgba($green_light, 0.9);
+      color: $white;
+      text-align: center;
+      border: 1px solid $black;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.selected {
+        background: rgba($green, 0.9);
+        flex-basis: 60%;
+        border: none;
+        &:hover {
+          cursor: initial;
+        }
+      }
+      h3 {
+        position: relative;
+        padding-bottom: 1em;
+
+        &::after {
+          @include gradient-underline($green_light, $white);
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    .tiers,
+    .add-ons,
+    .table-wrapper {
+      margin-left: 1em;
+      margin-right: 1em;
+      width: unset;
     }
   }
 }

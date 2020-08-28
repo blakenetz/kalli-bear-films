@@ -1,5 +1,12 @@
 import PropTypes from "prop-types";
 
+const y1 = 6;
+const y2 = 18;
+const x1 = 3;
+const x2 = 21;
+
+export const coordinates = [x1, y1, x2, y2];
+
 function Menu(props) {
   const [x1, y1, x2, y2] = props.coordinates;
 
@@ -23,7 +30,11 @@ function Menu(props) {
   );
 }
 Menu.propTypes = {
-  coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  coordinates: PropTypes.arrayOf(PropTypes.number),
+};
+
+Menu.defaultProps = {
+  coordinates,
 };
 
 export default Menu;

@@ -1,6 +1,6 @@
 import { useEffect } from "preact/hooks";
 import { motion, useAnimation } from "framer-motion";
-import { usenIView, useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 function About() {
   const [ref, inView] = useInView();

@@ -1,4 +1,7 @@
-// `import` path relative to `components` dir
+/**
+ * lazy load all components
+ */
+
 export const routes = [
   {
     path: "portfolio",
@@ -13,7 +16,9 @@ export const routes = [
   {
     path: "packages",
     getComponent: () =>
-      import("./components/Packages").then(module => module.default),
+      import("./components/PackagesPage/Packages").then(
+        module => module.default
+      ),
   },
   {
     path: "contact",

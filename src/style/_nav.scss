@@ -52,4 +52,62 @@ header {
     text-decoration: none;
     padding: 0 1rem;
   }
+
+  .menu {
+    display: none;
+  }
+
+  @media screen and (max-width: $breakpoint-lg) {
+    .slide-button {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    .links {
+      display: none;
+    }
+    .menu {
+      display: block;
+    }
+  }
+}
+
+.drawer {
+  height: 100vh;
+  background: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow: hidden;
+  width: 0; // controlled by anime
+
+  li,
+  h1 {
+    white-space: nowrap;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1em;
+    font-size: 1.5rem;
+  }
+
+  li {
+    padding-bottom: 1em;
+  }
+
+  .close-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
+  }
+
+  svg {
+    width: 2rem;
+    height: auto;
+  }
 }

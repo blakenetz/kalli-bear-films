@@ -49,8 +49,7 @@ main {
   }
 }
 
-button:not(.default),
-[role="button"] {
+.slide-button {
   text-transform: uppercase;
   padding: 1rem;
   background: $white;
@@ -95,6 +94,18 @@ button:focus {
 
 .no-focus:focus {
   outline: none;
+}
+
+.icon-button {
+  border: none;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 a {
