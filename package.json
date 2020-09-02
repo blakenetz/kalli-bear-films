@@ -1,66 +1,66 @@
 {
-	"private": true,
-	"name": "kalli-bear-films",
-	"version": "0.0.0",
-	"license": "MIT",
-	"homepage": "https://blakeface.github.io/kalli-bear-films",
-	"scripts": {
-		"start": "per-env",
-		"start:production": "npm run -s serve",
-		"start:development": "npm run -s dev",
-		"build": "preact build --template src/template.html --no-prerender",
-		"build:gh": "GITHUB_PAGES=kalli-bear-films preact build --no-prerender && dot-json ./build/manifest.json start_url \"/kalli-bear-films/\"",
-		"serve": "preact build --no-prerender && sirv build --cors --single",
-		"dev": "preact watch --template src/template.html",
-		"lint": "eslint src",
-		"predeploy": "preact build --no-prerender",
-		"deploy": "gh-pages -d build"
-	},
-	"eslintConfig": {
-		"extends": "preact",
-		"ignorePatterns": [
-			"build/"
-		]
-	},
-	"devDependencies": {
-		"dot-json": "^1.2.0",
-		"enzyme": "^3.10.0",
-		"enzyme-adapter-preact-pure": "^2.0.0",
-		"eslint": "^6.0.1",
-		"eslint-config-preact": "^1.1.0",
-		"identity-obj-proxy": "^3.0.0",
-		"jest": "^24.9.0",
-		"jest-preset-preact": "^1.0.0",
-		"per-env": "^1.0.2",
-		"preact-cli": "^3.0.0-rc.10",
-		"preact-render-spy": "^1.2.1",
-		"sirv-cli": "^0.4.5"
-	},
-	"dependencies": {
-		"animejs": "^3.2.0",
-		"axios": "^0.19.2",
-		"cheerio": "^1.0.0-rc.3",
-		"classnames": "^2.2.6",
-		"framer-motion": "^2.1.0",
-		"gh-pages": "^2.2.0",
-		"lodash": "^4.17.15",
-		"node-sass": "^4.13.1",
-		"preact": "^10.3.2",
-		"preact-async-route": "^2.2.1",
-		"preact-render-to-string": "^5.1.4",
-		"preact-router": "^3.2.1",
-		"prop-types": "^15.7.2",
-		"react-intersection-observer": "^8.26.2",
-		"react-slick": "^0.27.10",
-		"react-youtube": "^7.9.0",
-		"sass-loader": "^8.0.2",
-		"slick-carousel": "^1.8.1"
-	},
-	"jest": {
-		"preset": "jest-preset-preact",
-		"setupFiles": [
-			"<rootDir>/tests/__mocks__/browserMocks.js",
-			"<rootDir>/tests/__mocks__/setupTests.js"
-		]
-	}
+  "private": true,
+  "name": "kalli-bear-films",
+  "version": "0.0.0",
+  "license": "MIT",
+  "homepage": "https://blakeface.github.io/kalli-bear-films",
+  "scripts": {
+    "start": "per-env",
+    "start:production": "npm run -s serve",
+    "start:development": "npm run -s dev",
+    "build": "preact build --template src/template.html --no-prerender",
+    "build:gh": "GITHUB_PAGES=kalli-bear-films preact build --no-prerender && dot-json ./build/manifest.json start_url \"/kalli-bear-films/\"",
+    "serve": "preact build --no-prerender && sirv build --cors --single",
+    "dev": "preact watch --template src/template.html",
+    "lint": "eslint src",
+    "predeploy": "preact build --no-prerender",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "preact",
+    "ignorePatterns": [
+      "build/"
+    ]
+  },
+  "devDependencies": {
+    "dot-json": "^1.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-preact-pure": "^2.0.0",
+    "eslint": "^6.0.1",
+    "eslint-config-preact": "^1.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
+    "jest-preset-preact": "^1.0.0",
+    "per-env": "^1.0.2",
+    "preact-cli": "^3.0.0-rc.10",
+    "preact-render-spy": "^1.2.1",
+    "sirv-cli": "^0.4.5"
+  },
+  "dependencies": {
+    "animejs": "^3.2.0",
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "classnames": "^2.2.6",
+    "framer-motion": "^2.1.0",
+    "gh-pages": "^2.2.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
+    "preact": "^10.3.2",
+    "preact-async-route": "^2.2.1",
+    "preact-render-to-string": "^5.1.4",
+    "preact-router": "^3.2.1",
+    "prop-types": "^15.7.2",
+    "react-intersection-observer": "^8.26.2",
+    "react-slick": "^0.27.10",
+    "react-youtube": "^7.9.0",
+    "sass-loader": "^8.0.2",
+    "slick-carousel": "^1.8.1"
+  },
+  "jest": {
+    "preset": "jest-preset-preact",
+    "setupFiles": [
+      "<rootDir>/tests/__mocks__/browserMocks.js",
+      "<rootDir>/tests/__mocks__/setupTests.js"
+    ]
+  }
 }
