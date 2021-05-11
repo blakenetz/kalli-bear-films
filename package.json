@@ -42,7 +42,7 @@
     "classnames": "^2.2.6",
     "framer-motion": "^2.1.0",
     "gh-pages": "^2.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "node-sass": "^4.13.1",
     "preact": "^10.3.2",
     "preact-async-route": "^2.2.1",
