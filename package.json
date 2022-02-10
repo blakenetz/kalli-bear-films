@@ -43,7 +43,7 @@
     "framer-motion": "^2.1.0",
     "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "preact": "^10.3.2",
     "preact-async-route": "^2.2.1",
     "preact-render-to-string": "^5.1.4",
